@@ -1,0 +1,89 @@
+
+@import url(./fonts.css);
+
+main{
+    width: 1140px;
+    margin: auto;
+}
+.galery{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+} 
+.post{
+    margin: 4px;
+    width: 264px;
+    height: 380px;
+}
+.hoverMenu{
+    position: absolute;
+    width: 264px;
+    height: 380px;
+    background-color: white;
+    box-shadow: 0px 1px 9px rgba(0, 0, 0, 0.11);
+}
+.hoverMenu:hover{
+    height: 520px;
+    z-index: 1;
+}
+.hoverMenu:hover .action{
+    display: block;
+}
+.action{
+    display: none;
+}
+
+.postInfo{
+    padding: 0 10px 0px 10px;
+}
+.like{
+    text-align: end;
+    padding-right: 10px;
+}
+.post_img{
+    padding: 5px;
+    height: 250px;
+    width: 100%;
+}
+.allPost{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+div[class = 'postInfo']>h2{
+    margin-bottom: 5px;
+    font-family: 'Roboto', sans-serif;
+}
+.info{
+    font-size: 14px;
+}
+.price{
+    margin-top: 10px;
+}
+.wrapperAutor {
+    margin-top: 15px;
+    display: flex;
+    padding: 0 10px 0px 10px;
+}
+.wrapperAutor>h2{
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
+.wrapperButton {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+.wrapperButton>button{
+    width: 102px;
+    height: 40px;
+    background-color: #245462;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.wrapperButton>button:hover{
+    box-shadow: 0px 1px 9px rgba(0, 0, 0, 0.5);
+}

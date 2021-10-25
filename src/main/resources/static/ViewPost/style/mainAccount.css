@@ -1,0 +1,205 @@
+main{
+    width: 1140px;
+    margin: 90px auto 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+div[class = "controlPanelName"]>span{
+    width: 410px;
+    font-size: 16px;
+}
+h5{
+    font-size: 12px;
+}
+
+.wrapperInfoPost{
+    display: flex;
+    width: 100%;
+    height: 93%;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.myInfo{
+    width: 410px;
+}
+.myPost{
+    width: 730px;
+    padding-left: 30px;
+}
+
+.infoUser{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+div[class = "myPost"]>ul>li{
+    background: #FFFFFF;
+    border: 1px solid #F3F3F3;
+    box-sizing: border-box;
+    height: 165px;
+} 
+.submit{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+.name{
+    display: flex;
+    flex-direction: column;
+}
+div[class = name]>input{
+    width: 200px;
+    height: 38px;
+    padding: 10px;
+    margin-top: 5px;
+    background-color: #FCFCFC;
+    box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.07);
+}
+
+div[class = formUser]>div>div>img{
+    margin-top: 10px;
+    width: 200px;
+    height: 185px;
+    position: relative;
+}
+div[class = formUser]>div>div{
+    width: 200px;
+    height: 195px;
+}
+
+.accountPhoto{
+    position: relative;
+}
+.accountPhoto:hover .input__wrapper{
+    display: block;
+}
+
+div[class = name]>span{
+    margin-top: 10px;
+    width: 200px;
+    font-size: 12px;
+}
+
+div[class = 'formUser']>div>input{
+    width: 200px;
+    height: 38px;
+    padding: 10px;
+    margin-top: 5px;
+    background-color: #FCFCFC;
+    box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.07);
+}
+
+div[class = 'formUser']>div>button{
+    height: 38px;
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #E5E5E5;
+    background-color: #245462;
+    color: whitesmoke;
+}
+div[class = 'formUser']>div>button:hover{
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.formUser{
+    margin-top: 31px;
+}
+
+div[class = 'formUser']>div>span{
+    margin-top: 10px;
+    width: 200px;
+    font-size: 12px;
+}
+
+div[class = "myPost"]>ul{
+    margin-top: 40px;
+}
+
+div[class = "myPost"]>ul>li{
+    display: flex;
+    align-items: center;
+}
+
+div[class = "myPost"]>ul>li>img{
+    width: 20%;
+    height: 100%;
+    padding: 10px;
+}
+
+.text{
+    width: 63%;
+    height: 100%;
+    padding: 10px 10px 10px 0;
+}
+.column{
+    display: flex;
+    flex-direction: column;
+}
+
+div[class = "myPost"]>ul>li>div>button{
+   height: 38px;
+   margin: 5px;
+   padding: 10px;
+   border: 1px solid #E5E5E5;
+   background-color: #245462;
+   color: whitesmoke;
+}
+
+div[class = "myPost"]>ul>li>div>button:hover{
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.input__wrapper {
+    display: none;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    top: 138px;
+    left: 140px;
+}
+
+.input__file {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+}
+
+.input__file-icon-wrapper {
+    height: 60px;
+    width: 60px;
+    margin-right: 15px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    border: 1px solid #E5E5E5;
+    background-color: #245462;
+}
+.input__file-icon-wrapper:hover {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.input__file-button-text {
+line-height: 1;
+margin-top: 1px;
+}
+
+.input__file-button {
+width: 30%;
+max-width: 290px;
+height: 60px;
+background: #1bbc9b;
+display: -webkit-box;
+display: -ms-flexbox;
+-ms-flex-align: center;
+align-items: center;
+-ms-flex-pack: start;
+cursor: pointer;
+}
+
+

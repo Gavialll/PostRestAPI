@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Account</title>
+        <link rel="icon" th:href="@{/ViewPost/Image/nav/home.svg}" type="image/x-icon">
+        <link rel="stylesheet" href="../static/ViewPost/style/mainAccount.css" th:href="@{/ViewPost/style/mainAccount.css}">
+        <link rel="stylesheet" href="../static/ViewPost/style/header.css" th:href="@{/ViewPost/style/header.css}">
+        <link rel="stylesheet" href="../static/ViewPost/style/footer.css" th:href="@{/ViewPost/style/footer.css}">     
+    </head>
+
+<body>
+    <script type="module" th:src="@{/ViewPost/script/tokenController.js}"></script>
+    <header>
+        <div class="header">
+            <div class="header_wrapper">
+                <ul class="header_menu">
+                    <li>Головна</li>
+                    <li>Про Нас</li>
+                    <li>Контакти</li>
+                </ul>
+                <ul>
+                    <li class="phone_number">+380678755165</li>
+                </ul>
+            </div>
+        </div>
+        <nav class="navTop">
+            <div class="logo">POST</div>
+            <div class="search">
+                <img src="../static/ViewPost/Image/nav/search-icon.svg" th:src="@{/ViewPost/Image/nav/search.svg}" alt="">
+                <input class="fieldSearch" type="text" placeholder="Пошук">
+            </div>
+            <div class="userBar">
+                <a href="http://localhost:8080/home"><img class="icon" src="../static/ViewPost/Image/nav/home-alt.svg"
+                                                          th:src="@{/ViewPost/Image/nav/home.svg}" alt=""></a>
+                <a href="http://localhost:8080/authorization"><img class="icon" src="../static/ViewPost/Image/nav/bag.svg"
+                                                                   th:src="@{/ViewPost/Image/nav/unlock-alt.svg}" alt=""></a>
+                <a href="http://localhost:8080/account"><img class="icon" src="../static/ViewPost/Image/nav/profile-icon.svg"
+                                                             th:src="@{/ViewPost/Image/nav/user.svg}" alt=""></a>
+            </div>
+        </nav>
+        <nav class="navBottom">
+            <ul>
+                <li><a href="#"><img id="para" class="imgMenu" src="../static/ViewPost/Image/nav/car.svg"
+                                     th:src="@{/ViewPost/Image/nav/car.svg}" alt="">Авто</a></li>
+                <li><a href="#"><img class="imgMenu" src="../static/ViewPost/Image/nav/drill.svg"
+                                     th:src="@{/ViewPost/Image/nav/drill.svg}" alt="">Дім і Сад</a></li>
+                <li><a href="#"><img class="imgMenu" src="../static/ViewPost/Image/nav/mobile-android.svg"
+                                     th:src="@{/ViewPost/Image/nav/mobile-android.svg}" alt="">Електроніка</a></li>
+                <li><a href="#"><img class="imgMenu" src="../static/ViewPost/Image/nav/linux.svg"
+                                     th:src="@{/ViewPost/Image/nav/linux.svg}" alt="">Тварини</a></li>
+                <li><a href="#"><img class="imgMenu" src="../static/ViewPost/Image/nav/home-alt.svg"
+                                     th:src="@{/ViewPost/Image/nav/home-alt.svg}" alt="">Нерухомість</a></li>
+                <li><a href="#"><img class="imgMenu" src="../static/ViewPost/Image/nav/panel-add.svg"
+                                     th:src="@{/ViewPost/Image/nav/panel-add.svg}" alt="">Бізнес та послуги</a></li>
+                <li><a href="#"><img src="../static/ViewPost/Image/nav/etc.svg"
+                                     th:src="@{/ViewPost/Image/nav/etc.svg}" alt=""></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="myInfo">
+            <span>Особисті данні</span>
+            <div class="formUser">
+                <div class="infoUser">
+                    <div class="accountPhoto">
+                    <img id="accountPhoto" th:src="@{/ViewPost/Image/nav/profile-icon.svg}">
+                        <div class="input__wrapper">
+                            <form method="post" enctype="multipart/form-data">
+                            <input type="file" name="file" id="input__file" class="input input__file" multiple>
+                            </form>
+                            <label  for="input__file" class="input__file-button">
+                                <span class="input__file-icon-wrapper"><img class="input__file-icon" th:src="@{/ViewPost/Image/nav/download-alt.svg}" alt="Выбрать файл" width="25"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="name">
+                        <span>Імя</span>
+                        <input id="firstName" type="text">
+                        
+                        <span>Прізвище</span>
+                        <input id="lastName" type="text">
+
+                        <span>Телефон</span>
+                        <input id="number" type="text">
+                    </div>
+                </div>
+                <div class="infoUser">
+                    <span>E-mail</span>
+                    <span>Місто</span>
+                </div>
+                <div class="infoUser">
+                    <input id="email" type="text">
+                    <input id="city" type="text">
+                </div>
+                <div class="submit">
+                    <button id="editUser">Змінити</button>
+                    <button id="exit">Вийти</button>
+                </div>
+            </div>
+        </div>
+        <div class="myPost">
+            <span>Мої Оголошення</span>
+            <ul id='allPost'>
+<!--                 Невидаляти для прикладу-->
+<!--                <li>-->
+<!--                    <img th:src="@{/ViewPost/Image/nav/mobile-android.svg}" src="../static/DBImage/User/2 2g p.g(.()...p 2p22 (1).jpg" alt="">-->
+<!--                    <div class="text">-->
+<!--                        <h2>Назва</h2>-->
+<!--                        <div class="wrapperInfoPost">-->
+<!--                            <h3>Категорія: Авто</h3>-->
+<!--                            <h3>Опис: Loremipsum dolorsi tametcon sectetura dipisici ngelit. Placeatn emop erspici atisunde?</h3>-->
+<!--                            <h3>Ціна: 1544грн</h3>-->
+<!--                            <h5>2021-21-12 17:56</h5>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="column">-->
+<!--                        <button>Редагувати</button>-->
+<!--                        <button>Видалити</button>-->
+<!--                    </div>-->
+<!--                </li>-->
+            </ul>
+        </div>
+    </main>
+    <footer>
+        <div class="wrapperTopFooter">
+            <div class="leftFooter">
+                <h2>Навігація</h2>
+                <ul class="menuFooter">
+                    <li>Авто</li>
+                    <li>Дім і Сад</li>
+                    <li>Електроніка</li>
+                    <li>Тварини</li>
+                    <li>Нерухомість</li>
+                    <li>Бізнес та послуги</li>
+                </ul>
+            </div>
+            <div class="rightFooter">
+                <div class="logoFooter">POST</div>
+                <p class="addres">Україна м.Львів</p>
+                <p class="addres">вул.Винна гора 5б</p>
+            </div>
+        </div>
+        <div class="wrapperBottomFooter">
+            <p class="phoneFooter">+380678755165</p>
+            <p class="linkInstagram">Instagram</p>
+            <p class="linkEmail">andriydytko@gmail.com</p>
+        </div>
+    </footer>
+
+
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
+    <script type="module" src="../static/ViewPost/script/account.js" th:src="@{/ViewPost/script/account.js}"></script>
+    
+</body>
+
+</html>
