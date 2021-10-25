@@ -24,6 +24,7 @@ public class PageController {
 
     @GetMapping("/post")
     public String post(){
+
         return "post";
     }
 }
