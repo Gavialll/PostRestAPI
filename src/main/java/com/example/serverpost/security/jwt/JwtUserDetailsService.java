@@ -1,6 +1,6 @@
 package com.example.serverpost.security.jwt;
 
-import com.example.serverpost.dao.UserRepo;
+import com.example.serverpost.repository.UserRepo;
 import com.example.serverpost.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

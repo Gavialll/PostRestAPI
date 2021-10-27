@@ -21,9 +21,11 @@ import java.util.List;
 @RequestMapping("/api/admin")
 public class AdminController {
 
+
+    //Неготово зовсім
+
     @Autowired
     private PostService postService;
-
     @Autowired
     private UserService userService;
 

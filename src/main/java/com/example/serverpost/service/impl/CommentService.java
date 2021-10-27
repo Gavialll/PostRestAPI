@@ -1,6 +1,6 @@
 package com.example.serverpost.service.impl;
 
-import com.example.serverpost.dao.CommentRepo;
+import com.example.serverpost.repository.CommentRepo;
 import com.example.serverpost.model.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

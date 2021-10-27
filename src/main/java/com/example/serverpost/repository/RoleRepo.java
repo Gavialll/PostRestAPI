@@ -1,4 +1,4 @@
-package com.example.serverpost.dao;
+package com.example.serverpost.repository;
 
 import com.example.serverpost.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;

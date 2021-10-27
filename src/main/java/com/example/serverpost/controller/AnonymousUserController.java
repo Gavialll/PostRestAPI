@@ -1,5 +1,6 @@
 package com.example.serverpost.controller;
 
+import com.example.serverpost.dto.UserDto;
 import com.example.serverpost.exception.UserException;
 import com.example.serverpost.model.User;
 import com.example.serverpost.service.FileService;
@@ -17,17 +18,17 @@ import java.io.IOException;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/anonymous/user")
-public class UserController {
+public class AnonymousUserController {
     @Autowired
     private UserService userService;
 
-    //окремий контроллер реєстрація і логін
-    @PostMapping("/registration")
-    public Long addUser(@RequestBody User user){
-        userService.add(user);
-        return user.getId();
+    //користувач по id
+    @GetMapping("/{id}")
+    public UserDto getUser(@PathVariable long id) throws UserException{
+        return UserDto.create(userService.get(id));
     }
 
+    //фото до користувача
     @GetMapping("/{id}/img")
     public ResponseEntity getImg(@PathVariable Long id) throws IOException, UserException {
         BufferedImage bufferedImage = ImageIO
@@ -40,10 +41,5 @@ public class UserController {
                 .ok()
                 .contentType(MediaType.IMAGE_PNG)
                 .body(baos.toByteArray());
-    }
-
-    @GetMapping("/{id}")
-    public User getUser(@PathVariable long id) throws UserException{
-        return userService.get(id);
     }
 }

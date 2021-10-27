@@ -1,7 +1,7 @@
 package com.example.serverpost.security;
 
 
-import com.example.serverpost.dao.UserRepo;
+import com.example.serverpost.repository.UserRepo;
 import com.example.serverpost.dto.AuthenticationRequestDto;
 import com.example.serverpost.model.User;
 import com.example.serverpost.security.jwt.JwtTokenProvider;

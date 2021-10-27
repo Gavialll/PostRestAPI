@@ -1,10 +1,9 @@
 package com.example.serverpost.service.impl;
-import com.example.serverpost.dao.PostRepo;
-import com.example.serverpost.dao.UserRepo;
+import com.example.serverpost.repository.PostRepo;
+import com.example.serverpost.repository.UserRepo;
 import com.example.serverpost.exception.UserException;
 import com.example.serverpost.model.Post;
 import com.example.serverpost.model.User;
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -39,8 +38,6 @@ public class UserService implements com.example.serverpost.service.UserService {
         userUpdate.setLogin(user.getLogin());
         userUpdate.setCity(user.getCity());
         userUpdate.setNumber(user.getNumber());
-//        user.setImg(userRepo.findById(id).get().getImg());
-//        user.setId(id);
         return userRepo.save(userUpdate);
     }
     public String delete(Long id){

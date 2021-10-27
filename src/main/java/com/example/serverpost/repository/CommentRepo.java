@@ -1,7 +1,6 @@
-package com.example.serverpost.dao;
+package com.example.serverpost.repository;
 
 import com.example.serverpost.model.Comment;
-import com.example.serverpost.model.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

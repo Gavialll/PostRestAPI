@@ -1,6 +1,6 @@
 package com.example.serverpost.service.impl;
 
-import com.example.serverpost.dao.PostRepo;
+import com.example.serverpost.repository.PostRepo;
 import com.example.serverpost.exception.PostException;
 import com.example.serverpost.model.Post;
 import org.springframework.beans.factory.annotation.Autowired;

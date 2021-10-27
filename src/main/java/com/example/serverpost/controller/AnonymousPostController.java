@@ -1,5 +1,6 @@
 package com.example.serverpost.controller;
 
+import com.example.serverpost.dto.PostDto;
 import com.example.serverpost.exception.PostException;
 import com.example.serverpost.model.Comment;
 import com.example.serverpost.model.Post;
@@ -11,40 +12,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/api/anonymous/post")
-public class PostController {
+public class AnonymousPostController {
     @Autowired
     private PostService postService;
     @Autowired
     private CommentService commentService;
 
+
+    //коменти до поста
     @GetMapping("/{postId}/comment")
     public List<Comment> getAllComment(@PathVariable Long postId) {
         return commentService.getAllComment(postId);
     }
 
+    //всі пости
     @GetMapping
-    public List<Post> getAllPost(){
-        return postService.getAllPost();
+    public List<PostDto> getAllPost(){
+        return PostDto.create(postService.getAllPost());
     }
 
+    //пост по id
     @GetMapping("/{id}")
-    public Post get(@PathVariable Long id) throws PostException {
-        return postService.get(id);
+    public PostDto get(@PathVariable Long id) throws PostException {
+        return PostDto.create(postService.get(id));
     }
 
+    //фото до поста
     @GetMapping("{id}/img")
     public ResponseEntity getImage(@PathVariable Long id) throws PostException, IOException {
         BufferedImage bufferedImage = ImageIO
@@ -57,13 +60,4 @@ public class PostController {
                 .contentType(MediaType.IMAGE_PNG)
                 .body(baos.toByteArray());
     }
-
-//    @PostMapping(value = "/{id}/img")
-//    public boolean addFile(@PathVariable Long id, @RequestParam("file") MultipartFile file) throws PostException {
-//        Path p = Paths.get(Url.post);
-//        Post post = postService.get(id);
-//        post.setImg(FileService.save(file, p));
-//        postService.update(post.getId(), post);
-//        return true;
-//    }
 }

@@ -8,12 +8,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AuthenticationUser {
-    public static Long Id(UserService userService){
+    @Autowired
+    private UserService userService;
+
+    public Long Id(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return userService.getByLogin(authentication.getName()).getId();
-    }
-
-    public static Long getIdAccount(){
-        return Id(new com.example.serverpost.service.impl.UserService());
     }
 }

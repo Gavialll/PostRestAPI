@@ -117,7 +117,6 @@ function printPost(user){
         let addPostButton = document.createElement('button');
         addPostButton.innerText = "Додати нове оголошення";
 
-
         div.append(h2, addPostButton)
         li.append(div);
         allPost.append(li);

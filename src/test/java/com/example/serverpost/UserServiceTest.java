@@ -1,6 +1,6 @@
 package com.example.serverpost;
 
-import com.example.serverpost.dao.RoleRepo;
+import com.example.serverpost.repository.RoleRepo;
 import com.example.serverpost.model.User;
 import com.example.serverpost.service.impl.UserService;
 import lombok.extern.slf4j.Slf4j;
