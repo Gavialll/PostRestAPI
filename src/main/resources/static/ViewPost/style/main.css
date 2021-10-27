@@ -47,10 +47,11 @@ main{
     width: 100%;
 }
 .allPost{
+    margin: auto;
+    width: 1088px;
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 div[class = 'postInfo']>h2{
     margin-bottom: 5px;

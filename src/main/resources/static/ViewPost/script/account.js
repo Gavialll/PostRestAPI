@@ -14,6 +14,11 @@ GET(url, headers).then(user => {
 });
 
 
+// document.addEventListener('click',e => {
+//     console.log(e.id);
+// });
+
+
 //  Загрузка фото користувача
 //-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-/
 document.getElementById('input__file').onchange =  function(e) {
@@ -92,31 +97,35 @@ function printUser(user){
 //Вивід всіх оголошень
 //-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-/
 function printPost(user){
-    if(user.postList.length === 0){
+    if(user.postList.length === 0) {
         let allPost = document.getElementById('allPost');
 
         let li = document.createElement('li');
-
         let div = document.createElement('div');
-            div.classList.add('text');
-            div.style.display = "flex";
-            div.style.flexDirection = 'column';
-            div.style.width = "100%";
-            div.style.height = "max-content";
-            div.style.justifyContent = "center";
-            div.style.alignItems = "center";
+        div.classList.add('text');
+        div.style.display = "flex";
+        div.style.flexDirection = 'column';
+        div.style.width = "100%";
+        div.style.height = "max-content";
+        div.style.justifyContent = "center";
+        div.style.alignItems = "center";
 
         let h2 = document.createElement('h2');
-            h2.innerText = 'У вас ще немає оголошень';
-            h2.style.marginBottom = "15px";
+        h2.innerText = 'У вас ще немає оголошень';
+        h2.style.marginBottom = "15px";
 
         let addPostButton = document.createElement('button');
-            addPostButton.innerText = "Додати нове оголошення";
+        addPostButton.innerText = "Додати нове оголошення";
 
-                div.append(h2, addPostButton)
-            li.append(div);
+
+        div.append(h2, addPostButton)
+        li.append(div);
         allPost.append(li);
     }
+
+    document.addEventListener('click', function(e) {
+        console.log(e.target.id);
+    });
 
     for (const post of user.postList) {
 
@@ -126,6 +135,7 @@ function printPost(user){
         img.src = apiAddress + "/api/anonymous/post/" + post.id + "/img";
 
     let li = document.createElement('li');
+        li.id = post.id;
 
     let div = document.createElement('div');
         div.classList.add('text');
