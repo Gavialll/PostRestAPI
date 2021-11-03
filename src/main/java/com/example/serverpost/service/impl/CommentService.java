@@ -1,16 +1,18 @@
 package com.example.serverpost.service.impl;
 
-import com.example.serverpost.repository.CommentRepo;
 import com.example.serverpost.model.Comment;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.serverpost.repository.CommentRepo;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 public class CommentService implements com.example.serverpost.service.CommentService {
-    @Autowired
-    private CommentRepo commentRepo;
+    private final CommentRepo commentRepo;
+
+    public CommentService(CommentRepo commentRepo) {
+        this.commentRepo = commentRepo;
+    }
 
     @Override
     public Comment get(Long id) {

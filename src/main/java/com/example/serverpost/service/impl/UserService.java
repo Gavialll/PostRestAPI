@@ -22,7 +22,7 @@ public class UserService implements com.example.serverpost.service.UserService {
 
     @Override
     public User get(Long id) throws UserException {
-        return userRepo.findById(id).orElseThrow(UserException::new);
+        return userRepo.findById(id).orElseThrow(() -> new UserException(id));
     }
 
     @Override

@@ -87,4 +87,11 @@ public class AccountPostController {
         }
         return true;
     }
+
+    @DeleteMapping("/{id}")
+    @ApiOperation("Видалити публікацію")
+    public boolean delete(@PathVariable Long id){
+        postService.delete(id);
+        return true;
+    }
 }

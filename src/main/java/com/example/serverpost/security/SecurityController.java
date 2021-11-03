@@ -5,6 +5,8 @@ import com.example.serverpost.repository.UserRepo;
 import com.example.serverpost.dto.AuthenticationRequestDto;
 import com.example.serverpost.model.User;
 import com.example.serverpost.security.jwt.JwtTokenProvider;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,6 +24,7 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin
+@Api(description = "Контролер для автоизації")
 public class SecurityController {
 
     private final AuthenticationManager authenticationManager;
@@ -38,6 +41,7 @@ public class SecurityController {
     }
 
     @PostMapping("/login")
+    @ApiOperation("Авторизація користувача")
     public ResponseEntity login(@RequestBody AuthenticationRequestDto requestDto) {
         try {
             String login = requestDto.getLogin();

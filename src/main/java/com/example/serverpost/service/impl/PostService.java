@@ -7,14 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.function.Supplier;
 
 @Service
 public class PostService implements com.example.serverpost.service.PostService {
-    @Autowired
-    private PostRepo postRepo;
+    private final PostRepo postRepo;
+
+    public PostService(PostRepo postRepo) {
+        this.postRepo = postRepo;
+    }
+
     @Override
     public Post get(Long id) throws PostException {
-        return postRepo.findById(id).orElseThrow(PostException::new);
+        return postRepo.findById(id).orElseThrow(() -> new PostException(id));
     }
 
     @Override

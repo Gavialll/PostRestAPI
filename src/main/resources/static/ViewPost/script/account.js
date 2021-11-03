@@ -14,10 +14,73 @@ GET(url, headers).then(user => {
 });
 
 
-// document.addEventListener('click',e => {
-//     console.log(e.id);
-// });
+// Перехід на сторінку публікації
+//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-/
+document.addEventListener('click', function(event) {
+    let target = event.target;
+    console.log(target.id);
 
+    if((target.tagName === "DIV") && (target.id !== "")) {
+        window.location.href = apiAddress + "/post/" + target.id;
+    }else if((target.tagName === "BUTTON") && (target.innerText === "Видалити")) {
+        let del = apiAddress + "/api/account/post/" + target.id;
+        alert("delete");
+        POST("DELETE", del, {}, headers).then(()=>{
+            GET(url, headers).then(user => {
+                let ul = document.getElementById("allPost");
+                while (ul.firstChild) {
+                    ul.removeChild(ul.firstChild);
+                }
+                printPost(user);
+            });
+        });
+    }
+});
+
+
+//  Загрузка фото Публікації
+//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-/
+let buttonAddPost = document.getElementById("addPost")
+buttonAddPost.addEventListener("click", ()=>{
+console.log("start add post")
+let name = document.getElementById("name");
+let description = document.getElementById("description");
+let category = document.getElementById("category");
+let price= document.getElementById("price");
+
+let post = {
+    category : category.value,
+    name : name.value,
+    price : price.value,
+    description : description.value
+}
+
+console.log("start http post")
+let urlAddPost = apiAddress + "/api/account/post";
+POST("POST", urlAddPost, post, headers)
+
+    console.log("complete")
+});
+
+    // const selectedFile = document.getElementById('input__file__post').files[0];
+    // const formData = new FormData();
+    // formData.append('file', selectedFile);
+    //
+    // const headerAuthorization = {
+    //     'Authorization' : 'Bearer_' + localStorage.getItem('token')
+    // }
+    // let urlImg = apiAddress + '/api/account/post/img';
+    // fetch(urlImg, {
+    //     method: 'POST',
+    //     body: formData,
+    //     headers: headerAuthorization
+    // }).then(() => {
+    //     let accountPhoto = document.getElementById("accountPhoto")
+    //     accountPhoto.src = apiAddress + "/api/anonymous/user/" + id + "/img"
+    // });
+
+//  Загрузка фото користувача
+//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-/
 
 //  Загрузка фото користувача
 //-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-/
@@ -30,14 +93,14 @@ document.getElementById('input__file').onchange =  function(e) {
         'Authorization' : 'Bearer_' + localStorage.getItem('token')
     }
     let urlImg = apiAddress + '/api/account/img';
-        fetch(urlImg, {
-            method: 'POST',
-            body: formData,
-            headers: headerAuthorization
-        }).then(() => {
-            let accountPhoto = document.getElementById("accountPhoto")
-                accountPhoto.src = apiAddress + "/api/anonymous/user/" + id + "/img"
-        });
+    fetch(urlImg, {
+        method: 'POST',
+        body: formData,
+        headers: headerAuthorization
+    }).then(() => {
+        let accountPhoto = document.getElementById("accountPhoto")
+        accountPhoto.src = apiAddress + "/api/anonymous/user/" + id + "/img"
+    });
 
 }
 
@@ -122,19 +185,18 @@ function printPost(user){
         allPost.append(li);
     }
 
-    document.addEventListener('click', function(e) {
-        console.log(e.target.id);
-    });
-
     for (const post of user.postList) {
 
     let allPost = document.getElementById('allPost');
+
+    let click = document.createElement("div");
+        click.classList.add("click");
+        click.id = post.id;
 
     let img = document.createElement('img');
         img.src = apiAddress + "/api/anonymous/post/" + post.id + "/img";
 
     let li = document.createElement('li');
-        li.id = post.id;
 
     let div = document.createElement('div');
         div.classList.add('text');
@@ -166,12 +228,24 @@ function printPost(user){
 
     let deletePost = document.createElement('button');
         deletePost.innerText = 'Видалити';
+        deletePost.id = post.id;
 
                 wrapperH2.append(category, description, price, date);
                 wrapperButton.append(editPost, deletePost);
             div.append(h2, wrapperH2);
-        li.append(img, div, wrapperButton);
+        li.append(click, img, div, wrapperButton);
     allPost.append(li);
     }
 }
+
+// document.addEventListener("click", function(event) {
+//         let target = event.target;
+//         let del = apiAddress + "/post/" + target.id;
+//         alert("delete");
+//     POST("DELETE", del, headers).then(() => {
+//         // GET(url, headers).then(user => {
+//         //     printPost(user);
+//         // });
+//     });
+// })
 

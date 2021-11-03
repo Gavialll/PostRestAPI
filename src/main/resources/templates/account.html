@@ -63,24 +63,62 @@
     </div>
     <div class="myPost">
         <span>Мої Оголошення</span>
+
+        <div class="wrapperAddPost">
+        <div class="name">
+            <div class="accountPhoto">
+                <img id="postPhoto" th:src="@{/ViewPost/Image/nav/camera.svg}">
+                <div class="input__wrapper">
+                    <form method="post" enctype="multipart/form-data">
+                        <input type="file" name="file" id="input__file__post" class="input input__file" multiple>
+                    </form>
+                    <label for="input__file__post" class="input__file-button">
+                            <span class="input__file-icon-wrapper"><img class="input__file-icon"
+                                                                        th:src="@{/ViewPost/Image/nav/download-alt.svg}"
+                                                                        alt="Выбрать файл" width="25"></span>
+                    </label>
+                </div>
+            </div>
+
+            <span>Назва</span>
+            <input id="name" type="text">
+
+            <span>Опис</span>
+            <input id="description" type="text">
+
+            <span>Категорія</span>
+            <input id="category" type="text">
+
+            <span>Ціна</span>
+            <input id="price" type="number">
+
+            <div class="submit">
+                <button id="addPost">Додати</button>
+                <button id="cancel">Скасувати</button>
+            </div>
+
+        </div>
+        </div>
+
         <ul id='allPost'>
-            <!--                 Невидаляти для прикладу-->
-            <!--                <li>-->
-            <!--                    <img th:src="@{/ViewPost/Image/nav/mobile-android.svg}" src="../static/DBImage/User/2 2g p.g(.()...p 2p22 (1).jpg" alt="">-->
-            <!--                    <div class="text">-->
-            <!--                        <h2>Назва</h2>-->
-            <!--                        <div class="wrapperInfoPost">-->
-            <!--                            <h3>Категорія: Авто</h3>-->
-            <!--                            <h3>Опис: Loremipsum dolorsi tametcon sectetura dipisici ngelit. Placeatn emop erspici atisunde?</h3>-->
-            <!--                            <h3>Ціна: 1544грн</h3>-->
-            <!--                            <h5>2021-21-12 17:56</h5>-->
-            <!--                        </div>-->
-            <!--                    </div>-->
-            <!--                    <div class="column">-->
-            <!--                        <button>Редагувати</button>-->
-            <!--                        <button>Видалити</button>-->
-            <!--                    </div>-->
-            <!--                </li>-->
+<!--                             Невидаляти для прикладу-->
+<!--                            <li>-->
+<!--                                <div class="click"></div>-->
+<!--                                <img th:src="@{/ViewPost/Image/nav/mobile-android.svg}" src="../static/DBImage/User/2 2g p.g(.()...p 2p22 (1).jpg" alt="">-->
+<!--                                <div class="text">-->
+<!--                                    <h2>Назва</h2>-->
+<!--                                    <div class="wrapperInfoPost">-->
+<!--                                        <h3>Категорія: Авто</h3>-->
+<!--                                        <h3>Опис: Loremipsum dolorsi tametcon sectetura dipisici ngelit. Placeatn emop erspici atisunde?</h3>-->
+<!--                                        <h3>Ціна: 1544грн</h3>-->
+<!--                                        <h5>2021-21-12 17:56</h5>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="column">-->
+<!--                                    <button>Редагувати</button>-->
+<!--                                    <button>Видалити</button>-->
+<!--                                </div>-->
+<!--                            </li>-->
         </ul>
     </div>
 </main>
