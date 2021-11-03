@@ -16,7 +16,7 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed, 
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video, input, button, p{
+time, mark, audio, video, input, button, p, textarea{
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -24,6 +24,10 @@ time, mark, audio, video, input, button, p{
 	font: inherit;
 	vertical-align: baseline;
 	font-family: 'Roboto', sans-serif;
+}
+
+button{
+	background-color: white;
 }
 
 h5{

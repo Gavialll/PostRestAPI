@@ -7,6 +7,10 @@ import com.example.serverpost.model.User;
 import com.example.serverpost.service.FileService;
 import com.example.serverpost.service.Url;
 import com.example.serverpost.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiKeyAuthDefinition;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +27,7 @@ import java.nio.file.Paths;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/account")
+@Api(description = "Контролер для управління акаунтом")
 public class AccountUserController {
     @Autowired
     private UserService userService;
@@ -31,16 +36,19 @@ public class AccountUserController {
 
 
     @GetMapping("/id")
+    @ApiOperation("Ідентифакатор акаунта")
     public Long getId(){
         return authentication.Id();
     }
 
     @GetMapping()
+    @ApiOperation("Інформація про користувача, і його публікації")
     public UserDto getUser() throws UserException {
         return UserDto.create(userService.get(authentication.Id()));
     }
 
     @PutMapping()
+    @ApiOperation("Редагування інфомації користувача")
     public UserDto updateUser(@RequestBody UserDto userDto) throws UserException {
         User user = userService.get(authentication.Id());
         user.setFirstName(userDto.getFirstName());
@@ -53,12 +61,14 @@ public class AccountUserController {
     }
 
     @DeleteMapping()
+    @ApiOperation("Видалити акаунт")
     public Boolean deleteUser(){
         userService.delete(authentication.Id());
         return true;
     }
 
     @PostMapping("/img")
+    @ApiOperation("Додати фото користувача")
     public Boolean addImg(@RequestParam MultipartFile file) throws UserException {
         Path path = Paths.get(Url.user);
         User user = userService.get(authentication.Id());

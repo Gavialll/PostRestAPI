@@ -1,4 +1,4 @@
-export const apiAddress = "http://localhost:8080"
+export const apiAddress = "http://192.168.1.102:8080"
 
 // Форматування та вивід дати
 //-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-/
@@ -33,7 +33,7 @@ export function GET(url,
         if (response.ok) {
             return response.json()
         }
-        if (response.status === 403){
+        if (response.status === 403) {
             window.location.href = apiAddress + '/authorization';
         }
     })
@@ -45,11 +45,8 @@ export function POST(method,
                      url,
                      body,
                      headers = {
-                            'Content-Type': 'application/json'
+                         'Content-Type': 'application/json'
                      }) {
-    // const headers = {
-    //     'Content-Type': 'application/json'
-    // }
     return fetch(url, {
         method: method,
         body: JSON.stringify(body),
@@ -58,11 +55,12 @@ export function POST(method,
         if (response.ok) {
             return response.json()
         }
-        if (response.status === 403){
+        if (response.status === 403) {
             window.location.href = apiAddress + '/authorization';
         }
     })
 }
+
 //-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-/
 
 

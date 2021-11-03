@@ -1,0 +1,168 @@
+.wrapperPost {
+    padding-top: 64px;
+    display: flex;
+    width: 1140px;
+    margin: auto;
+}
+
+.wrapperInfo {
+
+}
+
+.wrapperImages {
+
+}
+
+.firstImage {
+    width: 653px;
+    height: 354px;
+}
+
+div[class = 'galleryImages'] > img {
+    width: 120px;
+    height: 90px;
+}
+
+div[class = 'galleryImages'] > img:hover {
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07);
+}
+
+.galleryImages{
+    display: flex;
+    justify-content: center;
+}
+
+div[class = 'wrapperInfo'] > h2 {
+    margin-bottom: 10px;
+    font-size: 28px;
+    font-weight: 900;
+}
+
+div[class = 'wrapperInfo'] > h6 {
+    font-size: 14px;
+    margin-bottom: 19px;
+}
+
+.wrapperPriceButton {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+div[class = 'wrapperPriceButton'] > h2 {
+    align-self: center;
+    font-size: 28px;
+    font-weight: 900;
+}
+
+div[class = 'wrapperPriceButton'] > button {
+    margin: 10px;
+    padding: 10px;
+    background-color: #245462;
+    color: whitesmoke;
+}
+
+div[class = 'wrapperPriceButton'] > button:hover {
+    box-shadow: 0px 1px 9px rgba(0, 0, 0, 0.5);
+}
+
+.wrapperCommentsCharacteristics{
+    width: 1140px;
+    margin: auto;
+}
+
+.wrapperButton {
+
+}
+
+.wrapperComments {
+
+}
+
+.commentText{
+    width: 1000px;
+    margin-top: 20px;
+}
+
+.nameCharacteristics{
+    width: 100%;
+}
+
+.valueCharacteristics>li{
+    text-align: end;
+}
+
+.characteristics {
+    display: flex;
+    width: 400px;
+    justify-content: space-between;
+}
+
+/*.characteristics>ul>li{*/
+/*    margin: 15px 0 10px 0;*/
+/*    border-bottom: 1px dashed #686868;*/
+/*    width: 100%;*/
+/*}*/
+
+#comment {
+    padding: 10px;
+    margin-bottom: -3px;
+}
+
+#characteristics {
+    border-bottom: 3px solid #245462;
+    margin-bottom: -3px;
+    padding: 10px;
+}
+#characteristics:hover{
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07);
+}
+
+#comment:hover{
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07);
+    border-bottom: 3px solid #245462;
+    margin-bottom: -3px;
+
+}
+
+.wrapperFormComment{
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+}
+#send{
+    margin: 10px;
+    padding: 10px;
+    background-color: #245462;
+    color: whitesmoke;
+}
+#send:hover{
+    box-shadow: 0px 1px 9px rgba(0, 0, 0, 0.5);
+}
+
+#commentText{
+    border: 1px solid #E5E5E5;
+    padding: 10px;
+    resize: none;
+    height: 30px;
+    width: 400px;
+    height: 80px;
+}
+
+
+.comment{
+    display: flex;
+    margin-top: 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07);
+    padding: 10px;
+}
+.comment>img{
+    width: 100px;
+    height: 100px;
+    background-color: #306677;
+    padding: 10px;
+    border-radius: 50%;
+    margin-right: 20px;
+}

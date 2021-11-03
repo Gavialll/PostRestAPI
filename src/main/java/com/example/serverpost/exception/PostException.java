@@ -1,14 +1,8 @@
 package com.example.serverpost.exception;
 
-public class PostException extends Exception {
+
+public class PostException extends RuntimeException {
     private String message = "Публікацю незнайдено";
-
-    public PostException(String message) {
-        this.message = message;
-    }
-    public PostException() {
-    }
-
 
     @Override
     public String getMessage() {
@@ -18,7 +12,4 @@ public class PostException extends Exception {
     public void setMessage(String message) {
         this.message = message;
     }
-
-
-
 }

@@ -1,7 +1,11 @@
 
 // Test
 ///////////////////////////////////////////////////////////////////////////////////////////
-
+document.addEventListener('click', function(event) {
+    let target = event.target;
+    // console.log(target.id)
+    window.location.href = apiAddress + "/post/" + target.id;
+});
 
 //-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-/
 
@@ -9,8 +13,6 @@
 //Main
 //-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-/
 import {apiAddress, getPostDate, GET} from "./module.js";
-
-// localStorage.removeItem('token');
 
 let url = apiAddress + "/api/anonymous/post";
 
@@ -26,6 +28,10 @@ function addToPage(elements) {
 
         let hoverMenu = document.createElement('div');
             hoverMenu.classList.add('hoverMenu');
+
+        let click = document.createElement("div");
+            click.classList.add("click");
+            click.id = element.id;
 
         let postImg = document.createElement('img');
             postImg.classList.add('post_img');
@@ -98,7 +104,7 @@ function addToPage(elements) {
                     action.append(wrapper, wrapper1, wrapper2, wrapperButton);
                     postInfo.append(name, city, date, price)
                     like.append(likeImg);
-                hoverMenu.append(postImg, like, postInfo, action);
+                hoverMenu.append(click, postImg, like, postInfo, action);
             post.append(hoverMenu);
         allPost.append(post);
     });

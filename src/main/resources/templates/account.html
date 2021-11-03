@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -14,55 +14,9 @@
 
 <body>
 <script type="module" th:src="@{/ViewPost/script/tokenController.js}"></script>
-<header>
-    <div class="header">
-        <div class="header_wrapper">
-            <ul class="header_menu">
-                <li>Головна</li>
-                <li>Про Нас</li>
-                <li>Контакти</li>
-            </ul>
-            <ul>
-                <li class="phone_number">+380678755165</li>
-            </ul>
-        </div>
-    </div>
-    <nav class="navTop">
-        <div class="logo">POST</div>
-        <div class="search">
-            <img src="../static/ViewPost/Image/nav/search-icon.svg" th:src="@{/ViewPost/Image/nav/search.svg}" alt="">
-            <input class="fieldSearch" type="text" placeholder="Пошук">
-        </div>
-        <div class="userBar">
-            <a href="http://localhost:8080/home"><img class="icon" src="../static/ViewPost/Image/nav/home-alt.svg"
-                                                      th:src="@{/ViewPost/Image/nav/home.svg}" alt=""></a>
-            <a href="http://localhost:8080/authorization"><img class="icon" src="../static/ViewPost/Image/nav/bag.svg"
-                                                               th:src="@{/ViewPost/Image/nav/unlock-alt.svg}"
-                                                               alt=""></a>
-            <a href="http://localhost:8080/account"><img class="icon"
-                                                         src="../static/ViewPost/Image/nav/profile-icon.svg"
-                                                         th:src="@{/ViewPost/Image/nav/user.svg}" alt=""></a>
-        </div>
-    </nav>
-    <nav class="navBottom">
-        <ul>
-            <li><a href="#"><img id="para" class="imgMenu" src="../static/ViewPost/Image/nav/car.svg"
-                                 th:src="@{/ViewPost/Image/nav/car.svg}" alt="">Авто</a></li>
-            <li><a href="#"><img class="imgMenu" src="../static/ViewPost/Image/nav/drill.svg"
-                                 th:src="@{/ViewPost/Image/nav/drill.svg}" alt="">Дім і Сад</a></li>
-            <li><a href="#"><img class="imgMenu" src="../static/ViewPost/Image/nav/mobile-android.svg"
-                                 th:src="@{/ViewPost/Image/nav/mobile-android.svg}" alt="">Електроніка</a></li>
-            <li><a href="#"><img class="imgMenu" src="../static/ViewPost/Image/nav/linux.svg"
-                                 th:src="@{/ViewPost/Image/nav/linux.svg}" alt="">Тварини</a></li>
-            <li><a href="#"><img class="imgMenu" src="../static/ViewPost/Image/nav/home-alt.svg"
-                                 th:src="@{/ViewPost/Image/nav/home-alt.svg}" alt="">Нерухомість</a></li>
-            <li><a href="#"><img class="imgMenu" src="../static/ViewPost/Image/nav/panel-add.svg"
-                                 th:src="@{/ViewPost/Image/nav/panel-add.svg}" alt="">Бізнес та послуги</a></li>
-            <li><a href="#"><img src="../static/ViewPost/Image/nav/etc.svg"
-                                 th:src="@{/ViewPost/Image/nav/etc.svg}" alt=""></a></li>
-        </ul>
-    </nav>
-</header>
+
+<header th:insert="/layout/Example :: header"></header>
+
 <main>
     <div class="myInfo">
         <span>Особисті данні</span>
@@ -130,34 +84,9 @@
         </ul>
     </div>
 </main>
-<footer>
-    <div class="wrapperTopFooter">
-        <div class="leftFooter">
-            <h2>Навігація</h2>
-            <ul class="menuFooter">
-                <li>Авто</li>
-                <li>Дім і Сад</li>
-                <li>Електроніка</li>
-                <li>Тварини</li>
-                <li>Нерухомість</li>
-                <li>Бізнес та послуги</li>
-            </ul>
-        </div>
-        <div class="rightFooter">
-            <div class="logoFooter">POST</div>
-            <p class="addres">Україна м.Львів</p>
-            <p class="addres">вул.Винна гора 5б</p>
-        </div>
-    </div>
-    <div class="wrapperBottomFooter">
-        <p class="phoneFooter">+380678755165</p>
-        <p class="linkInstagram">Instagram</p>
-        <p class="linkEmail">andriydytko@gmail.com</p>
-    </div>
-</footer>
 
+<footer th:insert="/layout/Example :: footer"></footer>
 
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
 <script type="module" src="../static/ViewPost/script/account.js" th:src="@{/ViewPost/script/account.js}"></script>
 
 </body>

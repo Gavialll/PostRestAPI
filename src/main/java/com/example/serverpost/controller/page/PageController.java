@@ -21,7 +21,7 @@ public class PageController {
         return "login";
     }
 
-    @GetMapping("/post")
+    @GetMapping("/post/{id}")
     public String post(){
         return "post";
     }

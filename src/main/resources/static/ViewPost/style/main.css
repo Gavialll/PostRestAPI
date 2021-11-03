@@ -16,6 +16,16 @@ main{
     width: 264px;
     height: 380px;
 }
+.click{
+    position: absolute;
+    width: 264px;
+    height: 380px;
+    background-color: rgba(48, 102, 119, 0);
+    cursor: pointer;
+}
+.click:hover{
+    height: 520px;
+}
 .hoverMenu{
     position: absolute;
     width: 264px;
@@ -83,6 +93,7 @@ div[class = 'postInfo']>h2{
     background-color: #245462;
     color: white;
     font-family: 'Roboto', sans-serif;
+    z-index: 3;
 }
 
 .wrapperButton>button:hover{
