@@ -3,8 +3,6 @@ package com.example.serverpost.dto;
 import com.example.serverpost.model.Post;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import javax.persistence.Column;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

@@ -7,7 +7,6 @@ import com.example.serverpost.service.Url;
 import com.example.serverpost.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +20,11 @@ import java.io.IOException;
 @RequestMapping("/api/anonymous/user")
 @Api(description = "Контролер користувачів для анонімних користувачів")
 public class AnonymousUserController {
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public AnonymousUserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/{id}")
     @ApiOperation("Дістати користувач по ID, і всі його публікації")

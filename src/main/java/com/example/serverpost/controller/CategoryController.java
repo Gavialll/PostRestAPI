@@ -4,7 +4,6 @@ import com.example.serverpost.dto.CategoryDto;
 import com.example.serverpost.repository.CategoryRepo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,8 +11,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/anonymous/category")
 @Api(description = "Контролер категорій")
 public class CategoryController {
-    @Autowired
-    private CategoryRepo categoryRepo;
+    private final CategoryRepo categoryRepo;
+
+    public CategoryController(CategoryRepo categoryRepo) {
+        this.categoryRepo = categoryRepo;
+    }
 
     @GetMapping("/{id}")
     @ApiOperation("Дістаєм категорію, і всі її публікаціїї")

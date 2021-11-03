@@ -8,19 +8,10 @@ import com.example.serverpost.service.FileService;
 import com.example.serverpost.service.Url;
 import com.example.serverpost.service.UserService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiKeyAuthDefinition;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.Authorization;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -29,10 +20,13 @@ import java.nio.file.Paths;
 @RequestMapping("/api/account")
 @Api(description = "Контролер для управління акаунтом")
 public class AccountUserController {
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private AuthenticationUser authentication;
+    private final UserService userService;
+    private final AuthenticationUser authentication;
+
+    public AccountUserController(UserService userService, AuthenticationUser authentication) {
+        this.userService = userService;
+        this.authentication = authentication;
+    }
 
 
     @GetMapping("/id")

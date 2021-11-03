@@ -12,9 +12,9 @@ import com.example.serverpost.service.UserService;
 import com.example.serverpost.service.impl.CommentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
@@ -25,14 +25,17 @@ import java.util.List;
 @RequestMapping("/api/account/post")
 @Api(description = "Контролер для управління публікаціями користувача")
 public class AccountPostController {
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private PostService postService;
-    @Autowired
-    private AuthenticationUser authentication;
-    @Autowired
-    private CommentService commentService;
+    private final UserService userService;
+    private final PostService postService;
+    private final AuthenticationUser authentication;
+    private final CommentService commentService;
+
+    public AccountPostController(UserService userService, PostService postService, AuthenticationUser authentication, CommentService commentService) {
+        this.userService = userService;
+        this.postService = postService;
+        this.authentication = authentication;
+        this.commentService = commentService;
+    }
 
     @GetMapping
     @ApiOperation("Всі публікації користувача")

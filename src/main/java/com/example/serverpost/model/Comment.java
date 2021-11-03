@@ -9,8 +9,6 @@ import java.util.Objects;
 
 @Entity
 public class Comment{
-    // відправник - sender
-    // отримувач - recipient
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

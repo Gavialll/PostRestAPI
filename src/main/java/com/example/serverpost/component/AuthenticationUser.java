@@ -8,8 +8,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AuthenticationUser {
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public AuthenticationUser(UserService userService) {
+        this.userService = userService;
+    }
 
     public Long Id(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
