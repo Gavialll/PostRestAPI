@@ -35,6 +35,9 @@ h5{
 .myInfo{
     width: 410px;
 }
+#postPhoto{
+    width: 200px;
+}
 .myPost{
     width: 730px;
     padding-left: 30px;
@@ -226,6 +229,9 @@ cursor: pointer;
 .wrapperAddPost{
     display: flex;
     justify-content: center;
+}
+#newPost{
+    display: none;
 }
 
 

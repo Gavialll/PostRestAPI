@@ -51,11 +51,11 @@ public class AccountPostController {
 
     @PostMapping
     @ApiOperation("Додаєм нову публікацію")
-    public List<PostDto> addPostToUser(@RequestBody Post post){
+    public PostDto addPostToUser(@RequestBody Post post){
         post.setUserId(authentication.Id());
         post.setDate(LocalDateTime.now());
-        postService.add(post);
-        return PostDto.create(userService.getAllPost(authentication.Id()));
+//        postService.add(post);
+        return PostDto.create(postService.add(post));
     }
 
     @PostMapping("/{id}/img")

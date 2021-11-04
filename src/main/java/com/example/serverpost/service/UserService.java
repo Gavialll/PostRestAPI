@@ -20,7 +20,4 @@ public interface UserService {
 
     public List<Post> getAllPost(Long id);
 
-
-
-
 }

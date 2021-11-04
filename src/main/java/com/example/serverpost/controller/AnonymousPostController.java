@@ -12,10 +12,11 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
@@ -49,7 +50,6 @@ public class AnonymousPostController {
         return PostDto.create(postService.getAllPost());
     }
 
-
     @GetMapping("/{id}")
     @ApiOperation("Публікація по ID")
     public PostDto get(@PathVariable Long id) throws PostException {
@@ -59,13 +59,16 @@ public class AnonymousPostController {
     @GetMapping("{id}/img")
     @ApiOperation("Фото до публікації")
     public ResponseEntity getImage(@PathVariable Long id) throws PostException, IOException {
-        BufferedImage bufferedImage = ImageIO.read(FileService.getFile(postService.get(id).getImg(), Url.post));
+        BufferedImage bufferedImage;
+        try {
+            bufferedImage = ImageIO.read(FileService.getFile(postService.get(id).getImg(), Url.post));
+        }catch(IIOException exception){
+            bufferedImage = ImageIO.read(FileService.getFile("defaultPost.jpg", Url.defaultImg));
+        }
+
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(bufferedImage, "png", baos);
 
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_PNG)
-                .body(baos.toByteArray());
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(baos.toByteArray());
     }
 }
