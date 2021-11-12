@@ -1,10 +1,9 @@
 package com.example.serverpost.controller;
 
+import com.example.serverpost.component.FileService;
 import com.example.serverpost.dto.PostDto;
-import com.example.serverpost.exception.PostException;
 import com.example.serverpost.model.Comment;
 import com.example.serverpost.service.CommentService;
-import com.example.serverpost.service.FileService;
 import com.example.serverpost.service.PostService;
 import com.example.serverpost.service.Url;
 import io.swagger.annotations.Api;
@@ -52,13 +51,13 @@ public class AnonymousPostController {
 
     @GetMapping("/{id}")
     @ApiOperation("Публікація по ID")
-    public PostDto get(@PathVariable Long id) throws PostException {
+    public PostDto get(@PathVariable Long id){
         return PostDto.create(postService.get(id));
     }
 
     @GetMapping("{id}/img")
     @ApiOperation("Фото до публікації")
-    public ResponseEntity getImage(@PathVariable Long id) throws PostException, IOException {
+    public ResponseEntity getImage(@PathVariable Long id) throws IOException {
         BufferedImage bufferedImage;
         try {
             bufferedImage = ImageIO.read(FileService.getFile(postService.get(id).getImg(), Url.post));

@@ -1,5 +1,6 @@
-package com.example.serverpost.service;
+package com.example.serverpost.component;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
@@ -11,8 +12,7 @@ import java.nio.file.Paths;
 import java.security.SecureRandom;
 import java.util.Random;
 
-
-@Service
+@Component
 public class FileService {
     public static String save(MultipartFile file, Path dir) {
         String fileName = FileService.createRandomCode(20,

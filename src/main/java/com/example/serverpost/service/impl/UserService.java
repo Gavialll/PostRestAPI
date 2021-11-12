@@ -1,7 +1,7 @@
 package com.example.serverpost.service.impl;
+import com.example.serverpost.exception.user.UserNotFoundException;
 import com.example.serverpost.repository.PostRepo;
 import com.example.serverpost.repository.UserRepo;
-import com.example.serverpost.exception.UserException;
 import com.example.serverpost.model.Post;
 import com.example.serverpost.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +21,8 @@ public class UserService implements com.example.serverpost.service.UserService {
     }
 
     @Override
-    public User get(Long id) throws UserException {
-        return userRepo.findById(id).orElseThrow(() -> new UserException(id));
+    public User get(Long id){
+        return userRepo.findById(id).orElseThrow(() -> new UserNotFoundException("User not found, id = " + id));
     }
 
     @Override
@@ -32,17 +32,13 @@ public class UserService implements com.example.serverpost.service.UserService {
 
     @Override
     public User update(Long id, User user){
-        User userUpdate = userRepo.getById(id);
-        userUpdate.setFirstName(user.getFirstName());
-        userUpdate.setLastName(user.getLastName());
-        userUpdate.setLogin(user.getLogin());
-        userUpdate.setCity(user.getCity());
-        userUpdate.setNumber(user.getNumber());
-        return userRepo.save(userUpdate);
+        return userRepo.save(user);
     }
-    public String delete(Long id){
+
+    @Override
+    public void delete(Long id){
+        userRepo.findById(id).orElseThrow(() -> new UserNotFoundException("User not found, id = " + id));
         userRepo.deleteById(id);
-        return "Delete User Complete";
     }
 
     @Override

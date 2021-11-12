@@ -6,16 +6,16 @@
 }
 
 .wrapperInfo {
-
+    width: 100%;
 }
 
 .wrapperImages {
-
+    margin-right: 20px;
 }
 
 .firstImage {
-    width: 653px;
-    height: 354px;
+    width: 100%;
+    height: 400px;
 }
 
 div[class = 'galleryImages'] > img {

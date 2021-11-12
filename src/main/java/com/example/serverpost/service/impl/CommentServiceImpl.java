@@ -1,5 +1,6 @@
 package com.example.serverpost.service.impl;
 
+import com.example.serverpost.component.AuthenticationUser;
 import com.example.serverpost.model.Comment;
 import com.example.serverpost.repository.CommentRepo;
 import org.springframework.stereotype.Service;
@@ -7,11 +8,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class CommentService implements com.example.serverpost.service.CommentService {
+public class CommentServiceImpl implements com.example.serverpost.service.CommentService {
     private final CommentRepo commentRepo;
+    private final AuthenticationUser authentication;
 
-    public CommentService(CommentRepo commentRepo) {
+    public CommentServiceImpl(CommentRepo commentRepo, AuthenticationUser authentication) {
         this.commentRepo = commentRepo;
+        this.authentication = authentication;
     }
 
     @Override
@@ -26,9 +29,8 @@ public class CommentService implements com.example.serverpost.service.CommentSer
     }
 
     @Override
-    public String delete(Long id) {
+    public void delete(Long id) {
         commentRepo.deleteById(id);
-        return "Delete Comment Complete";
     }
 
     @Override
@@ -41,5 +43,14 @@ public class CommentService implements com.example.serverpost.service.CommentSer
     @Override
     public List<Comment> getAllComment(Long id) {
         return commentRepo.getAllByPostId(id);
+    }
+
+    public Comment create(String message, Long postId){
+        Comment comment = new Comment();
+        comment.setSenderId(authentication.Id());
+        comment.setPostId(postId);
+        comment.setDate(LocalDateTime.now());
+        comment.setMessage(message);
+        return comment;
     }
 }

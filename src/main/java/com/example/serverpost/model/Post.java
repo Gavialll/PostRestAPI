@@ -74,11 +74,11 @@ public class Post{
     public void setCommentList(List<Comment> commentList) {
         this.commentList = commentList;
     }
-
-    public Post(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
+//
+//    public Post(String name, String description) {
+//        this.name = name;
+//        this.description = description;
+//    }
 
     public Long getUserId() {
         return userId;

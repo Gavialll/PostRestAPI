@@ -56,7 +56,7 @@ public class SecurityController {
 
             Map<Object, Object> response = new HashMap<>();
             response.put("login", login);
-            response.put("token", token);
+            response.put("token", "Bearer_" + token);
 
 
             return ResponseEntity.ok(response);

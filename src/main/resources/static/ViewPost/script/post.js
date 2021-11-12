@@ -7,6 +7,8 @@ let price = document.getElementById("price");
 let category = document.getElementById("category");
 let date = document.getElementById("date");
 let description = document.getElementById("description");
+let firstPhoto = document.querySelector(".firstImage");
+
 
 //Витягую id з URL
 let idPost = window.location.pathname.slice(6);
@@ -18,6 +20,7 @@ GET(getPostById(idPost)).then(post => {
         .then(c => category.innerText = c.name);
     date.innerText = getPostDate(post.date);
     description.innerText = post.description;
+    firstPhoto.src = apiAddress + "/api/anonymous/post/" + post.id + "/img";
 })
 
 
@@ -33,7 +36,6 @@ viewCharacteristics.addEventListener("click", () => {
 
     let wrapperComments = document.getElementById("wrapperComments");
     wrapperComments.remove();
-
     //тут має бути вивід характеристикк
 });
 
@@ -43,7 +45,6 @@ viewCharacteristics.addEventListener("click", () => {
 let viewComment = document.getElementById("comment");
 viewComment.addEventListener("click", () => {
 printComment();
-
 });
 
 //Вивід коментарів

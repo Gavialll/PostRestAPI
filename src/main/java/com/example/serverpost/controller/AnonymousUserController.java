@@ -1,8 +1,7 @@
 package com.example.serverpost.controller;
 
+import com.example.serverpost.component.FileService;
 import com.example.serverpost.dto.UserDto;
-import com.example.serverpost.exception.UserException;
-import com.example.serverpost.service.FileService;
 import com.example.serverpost.service.Url;
 import com.example.serverpost.service.UserService;
 import io.swagger.annotations.Api;
@@ -28,13 +27,13 @@ public class AnonymousUserController {
 
     @GetMapping("/{id}")
     @ApiOperation("Дістати користувач по ID, і всі його публікації")
-    public UserDto getUser(@PathVariable long id) throws UserException{
+    public UserDto getUser(@PathVariable long id){
         return UserDto.create(userService.get(id));
     }
 
     @GetMapping("/{id}/img")
     @ApiOperation("Фото користувача")
-    public ResponseEntity getImg(@PathVariable Long id) throws IOException, UserException {
+    public ResponseEntity getImg(@PathVariable Long id) throws IOException {
         BufferedImage bufferedImage = ImageIO
                 .read(FileService.getFile(userService.get(id).getImg(), Url.user));
 
