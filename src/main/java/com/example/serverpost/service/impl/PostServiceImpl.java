@@ -3,9 +3,10 @@ package com.example.serverpost.service.impl;
 import com.example.serverpost.component.AuthenticationUser;
 import com.example.serverpost.dto.AddPostDto;
 import com.example.serverpost.exception.post.PostNotFoundException;
-import com.example.serverpost.repository.PostRepo;
 import com.example.serverpost.model.Post;
+import com.example.serverpost.repository.PostRepo;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -28,7 +29,6 @@ public class PostServiceImpl implements com.example.serverpost.service.PostServi
     public Post add(Post post) {
         if(post.getCategory() == null) {
             post.setCategory(0L);
-//             TODO: 11.11.2021 exception невідома категорія
         }
         return postRepo.save(post);
     }

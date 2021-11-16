@@ -1,8 +1,11 @@
 package com.example.serverpost.component;
 
+import com.example.serverpost.exception.LoginDuplicateException;
+import com.example.serverpost.exception.category.CategoryException;
 import com.example.serverpost.exception.post.PostAddException;
 import com.example.serverpost.exception.post.PostNotFoundException;
 import com.example.serverpost.exception.post.PostPriceException;
+import com.example.serverpost.exception.user.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -16,6 +19,16 @@ public class Handler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(value = CategoryException.class)
+    protected ResponseEntity<Object> get(CategoryException exception){
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = UserNotFoundException.class)
+    protected ResponseEntity<Object> get(UserNotFoundException exception){
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(value = PostAddException.class)
     protected ResponseEntity<Object> add(PostAddException exception){
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
@@ -23,6 +36,11 @@ public class Handler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = PostPriceException.class)
     protected ResponseEntity<Object> price(PostPriceException exception){
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = LoginDuplicateException.class)
+    protected ResponseEntity<Object> price(LoginDuplicateException exception){
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

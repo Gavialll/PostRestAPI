@@ -22,7 +22,7 @@ public class User{
     private List<Post> postList;
     private String img;
 
-    public User() {
+    public User(){
     }
 
     public User(String login) {

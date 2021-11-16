@@ -1,6 +1,7 @@
 package com.example.serverpost.controller;
 
 import com.example.serverpost.dto.CategoryDto;
+import com.example.serverpost.exception.category.CategoryException;
 import com.example.serverpost.repository.CategoryRepo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -20,6 +21,7 @@ public class CategoryController {
     @GetMapping("/{id}")
     @ApiOperation("Дістаєм категорію, і всі її публікаціїї")
     public CategoryDto get(@PathVariable Long id) throws Exception {
-        return CategoryDto.create(categoryRepo.findById(id).orElseThrow(Exception::new));
+        return CategoryDto.create(categoryRepo.findById(id)
+                .orElseThrow(() -> new CategoryException("Category not found, id = " + id)));
     }
 }

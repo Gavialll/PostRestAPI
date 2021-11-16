@@ -1,15 +1,17 @@
 package com.example.serverpost.service.impl;
+
 import com.example.serverpost.exception.user.UserNotFoundException;
-import com.example.serverpost.repository.PostRepo;
-import com.example.serverpost.repository.UserRepo;
 import com.example.serverpost.model.Post;
 import com.example.serverpost.model.User;
+import com.example.serverpost.repository.PostRepo;
+import com.example.serverpost.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
-public class UserService implements com.example.serverpost.service.UserService {
+public class UserServiceImpl implements com.example.serverpost.service.UserService {
     @Autowired
     private UserRepo userRepo;
     @Autowired

@@ -56,9 +56,8 @@ public class AccountPostController {
     @PostMapping
     @ApiOperation("Додаєм нову публікацію")
     public PostDto addPost(@RequestBody AddPostDto addPostDto){
-
+        // TODO: 12.11.2021 Зробити валідацію полів при додаванні публікації.
         if(addPostDto.getPrice() < 0) throw new PostPriceException("Price no validation");
-        // TODO: 12.11.2021 Валідація полів 
         Post post = postService.create(addPostDto);
         return PostDto.create(postService.add(post));
     }
@@ -84,10 +83,12 @@ public class AccountPostController {
     @ApiOperation("Редагування публікації")
     public PostDto update(@PathVariable Long id, @RequestBody AddPostDto addPostDto){
         Post post = postService.get(id);
-        post.setName(addPostDto.getName());
-        post.setCategory(addPostDto.getCategory());
-        post.setPrice(addPostDto.getPrice());
-        post.setDescription(addPostDto.getDescription());
+        // TODO: 15.11.2021 Переробити валідацію полів при редагуванні.
+        if(addPostDto.getName() != null) post.setName(addPostDto.getName());
+        if(addPostDto.getCategory() != null) post.setCategory(addPostDto.getCategory());
+        if(addPostDto.getPrice() != null) post.setPrice(addPostDto.getPrice());
+        if(addPostDto.getDescription() != null) post.setDescription(addPostDto.getDescription());
+
         return PostDto.create(postService.update(id, post));
     }
 

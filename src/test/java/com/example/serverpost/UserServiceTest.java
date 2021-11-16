@@ -1,8 +1,8 @@
 package com.example.serverpost;
 
-import com.example.serverpost.repository.RoleRepo;
 import com.example.serverpost.model.User;
-import com.example.serverpost.service.impl.UserService;
+import com.example.serverpost.repository.RoleRepo;
+import com.example.serverpost.service.impl.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @Slf4j
 public class UserServiceTest {
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
     @Autowired
     private RoleRepo roleRepo;
 

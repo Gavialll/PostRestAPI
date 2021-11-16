@@ -37,10 +37,13 @@ public class AnonymousPostController {
     @GetMapping("/{postId}/comment")
     @ApiOperation("Всі коментарі до публікації")
     public List<Comment> getAllComment(@PathVariable Long postId) {
-        List<Comment> commentList = commentService.getAllComment(postId);
-        commentList.sort(Comparator.comparing(Comment::getDate));
-        Collections.reverse(commentList);
-        return commentList;
+        if(postService.get(postId) != null) {
+            List<Comment> commentList = commentService.getAllComment(postId);
+            commentList.sort(Comparator.comparing(Comment::getDate));
+            Collections.reverse(commentList);
+            return commentList;
+        }
+        return null;
     }
 
     @GetMapping
