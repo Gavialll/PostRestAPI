@@ -3,6 +3,7 @@ package com.example.serverpost.service.impl;
 import com.example.serverpost.component.AuthenticationUser;
 import com.example.serverpost.dto.AddPostDto;
 import com.example.serverpost.exception.post.PostNotFoundException;
+import com.example.serverpost.exception.post.PostPriceException;
 import com.example.serverpost.model.Post;
 import com.example.serverpost.repository.PostRepo;
 import org.springframework.stereotype.Service;
@@ -26,11 +27,14 @@ public class PostServiceImpl implements com.example.serverpost.service.PostServi
     }
 
     @Override
-    public Post add(Post post) {
+    public Post add(AddPostDto post) {
+        // TODO: 12.11.2021 Зробити валідацію полів при додаванні публікації.
+        if(post.getPrice() == null || post.getPrice() < 0)
+            throw new PostPriceException("Price no validation");
         if(post.getCategory() == null) {
             post.setCategory(0L);
         }
-        return postRepo.save(post);
+        return postRepo.save(create(post));
     }
 
     @Override
@@ -42,7 +46,6 @@ public class PostServiceImpl implements com.example.serverpost.service.PostServi
     @Override
     public Post update(Long id, Post post) {
         post.setDate(LocalDateTime.now());
-        post.setId(id);
         return postRepo.save(post);
     }
 

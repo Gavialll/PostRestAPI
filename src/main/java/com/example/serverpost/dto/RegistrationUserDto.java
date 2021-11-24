@@ -15,4 +15,5 @@ public class RegistrationUserDto {
     private String login;
     private String number;
     private String password;
+    private String passwordConfirmation;
 }

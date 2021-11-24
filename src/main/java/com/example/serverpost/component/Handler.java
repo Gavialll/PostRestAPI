@@ -1,6 +1,6 @@
 package com.example.serverpost.component;
 
-import com.example.serverpost.exception.LoginDuplicateException;
+import com.example.serverpost.exception.RegistrationException;
 import com.example.serverpost.exception.category.CategoryException;
 import com.example.serverpost.exception.post.PostAddException;
 import com.example.serverpost.exception.post.PostNotFoundException;
@@ -39,8 +39,8 @@ public class Handler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(value = LoginDuplicateException.class)
-    protected ResponseEntity<Object> price(LoginDuplicateException exception){
+    @ExceptionHandler(value = RegistrationException.class)
+    protected ResponseEntity<Object> price(RegistrationException exception){
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

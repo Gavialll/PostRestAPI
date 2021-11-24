@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/anonymous/category")
-@Api(description = "Контролер категорій")
+@Api(tags = "Контролер категорій")
 public class CategoryController {
     private final CategoryRepo categoryRepo;
 

@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -17,7 +18,7 @@ import java.io.IOException;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/anonymous/user")
-@Api(description = "Контролер користувачів для анонімних користувачів")
+@Api(tags = "Контролер користувачів для анонімних користувачів")
 public class AnonymousUserController {
     private final UserService userService;
 

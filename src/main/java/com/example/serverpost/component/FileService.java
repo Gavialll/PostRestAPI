@@ -1,8 +1,8 @@
 package com.example.serverpost.component;
 
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -14,10 +14,9 @@ import java.util.Random;
 
 @Component
 public class FileService {
-    public static String save(MultipartFile file, Path dir) {
+    public static String save(MultipartFile file, Path dir){
         String fileName = FileService.createRandomCode(20,
                 file.getOriginalFilename()) + file.getOriginalFilename();
-
         Path filepath = Paths.get(dir.toString(), fileName);
         try (OutputStream os = Files.newOutputStream(filepath)) {
             os.write(file.getBytes());
@@ -39,21 +38,6 @@ public class FileService {
             char c = chars[random.nextInt(chars.length)];
             sb.append(c);
         }
-        String output = sb.toString();
-        return output ;
+        return sb.toString();
     }
-
-
-//    @PostMapping(value = "/post/img")
-//    public String addFile(@RequestParam("file") MultipartFile file) {
-//        Path p = Paths.get("/Users/andrijdutko/Desktop/ServerPost/src/main/resources/static/");
-//
-//        System.out.println(file.getOriginalFilename());
-//
-//        write(file, p);
-//
-//        System.out.println("Complete");
-//        System.out.println("///////////////////////////////");
-//        return "True";
-//    }
 }

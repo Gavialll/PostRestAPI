@@ -1,4 +1,4 @@
-import {getPostDate, GET, apiAddress, POST} from "./module.js";
+import {apiAddress, GET, getPostDate, POST} from "./module.js";
 
 let url = apiAddress + "/api/account";
 
@@ -174,8 +174,8 @@ function printPost(user) {
             let editPost = document.createElement('button');
             editPost.innerText = "Редагувати";
             editPost.id = post.id;
-            editPost.addEventListener("click", ()=>{
-                    url = apiAddress + "/api/account/post?id=" + post.id;
+            editPost.addEventListener("click", (event)=>{
+                    url = apiAddress + "/api/account/post?id=" + event.target.id;
                     GET(url, headerAuthorization, {}).then(arrPost => {
                         editPosts(arrPost[0]);
                     })

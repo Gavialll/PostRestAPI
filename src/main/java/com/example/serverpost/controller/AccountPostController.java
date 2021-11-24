@@ -4,8 +4,8 @@ import com.example.serverpost.component.AuthenticationUser;
 import com.example.serverpost.component.FileService;
 import com.example.serverpost.dto.AddPostDto;
 import com.example.serverpost.dto.PostDto;
+import com.example.serverpost.exception.PostImageException;
 import com.example.serverpost.exception.post.PostNotFoundException;
-import com.example.serverpost.exception.post.PostPriceException;
 import com.example.serverpost.model.Comment;
 import com.example.serverpost.model.Post;
 import com.example.serverpost.service.Url;
@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -25,7 +26,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/account/post")
-@Api(description = "Контролер для управління публікаціями користувача")
+@Api(tags = "Контролер для управління публікаціями користувача")
 public class AccountPostController {
     private final UserService userService;
     private final PostServiceImpl postService;
@@ -56,18 +57,25 @@ public class AccountPostController {
     @PostMapping
     @ApiOperation("Додаєм нову публікацію")
     public PostDto addPost(@RequestBody AddPostDto addPostDto){
-        // TODO: 12.11.2021 Зробити валідацію полів при додаванні публікації.
-        if(addPostDto.getPrice() < 0) throw new PostPriceException("Price no validation");
-        Post post = postService.create(addPostDto);
-        return PostDto.create(postService.add(post));
+        return PostDto.create(postService.add(addPostDto));
     }
     
     @PostMapping("/{id}/img")
     @ApiOperation("Додаєм головне фото публікації")
     public HttpStatus addImage(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
-        Path p = Paths.get(Url.post);
+        Path path = Paths.get(Url.post);
         Post post = postService.get(id);
-        post.setImg(FileService.save(file, p));
+
+        if(post.getImg() != null){
+            File photo = new File(Url.post + post.getImg());
+            if(!photo.delete()) {
+                // TODO: 15.11.2021 змінити RuntimeException на Exception,
+                //       і попробувати видалити ще раз старе фото.
+                throw new PostImageException("The previous image was not deleted");
+            }
+        }
+
+        post.setImg(FileService.save(file, path));
         postService.update(post.getId(), post);
         return HttpStatus.OK;
     }
@@ -88,13 +96,19 @@ public class AccountPostController {
         if(addPostDto.getCategory() != null) post.setCategory(addPostDto.getCategory());
         if(addPostDto.getPrice() != null) post.setPrice(addPostDto.getPrice());
         if(addPostDto.getDescription() != null) post.setDescription(addPostDto.getDescription());
-
         return PostDto.create(postService.update(id, post));
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation("Видалити публікацію")
     public HttpStatus delete(@PathVariable Long id){
+        Post post = postService.get(id);
+            File photo = new File(Url.post + post.getImg());
+            if(!photo.delete()) {
+                // TODO: 15.11.2021 змінити RuntimeException на Exception,
+                //       і попробувати видалити ще раз старе фото.
+                throw new PostImageException("The previous image was not deleted");
+            }
         postService.delete(id);
         return HttpStatus.OK;
     }

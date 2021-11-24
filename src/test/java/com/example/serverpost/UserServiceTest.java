@@ -17,22 +17,22 @@ public class UserServiceTest {
     @Autowired
     private RoleRepo roleRepo;
 
-    @Test
-    public void add(){
-        User user = new User(
-                "firstTest",
-                "lastTest",
-                "loginTest",
-                "123",
-                roleRepo.getById(1L),
-                "img"
-                );
-
-        Assertions.assertEquals(userService.add(user).getLogin(), "loginTest");
-        deleteUser();
-        log.info("test(add): create user");
-        log.error("test(add): error");
-    }
+//    @Test
+//    public void add(){
+//        User user = new User(
+//                "firstTest",
+//                "lastTest",
+//                "loginTest",
+//                "123",
+//                roleRepo.getById(1L),
+//                "img"
+//                );
+//
+//        Assertions.assertEquals(userService.add(user).getLogin(), "loginTest");
+//        deleteUser();
+//        log.info("test(add): create user");
+//        log.error("test(add): error");
+//    }
 
     @Test
     public void update(){

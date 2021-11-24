@@ -21,7 +21,7 @@ import java.nio.file.Paths;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/account")
-@Api(description = "Контролер для управління акаунтом")
+@Api(tags = "Контролер для управління акаунтом")
 public class AccountUserController {
     private final UserService userService;
     private final AuthenticationUser authentication;

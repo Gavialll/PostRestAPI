@@ -24,7 +24,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/anonymous/post")
-@Api(description = "Контролер публікації для анонімних користувачів")
+@Api(tags = "Контролер публікації для анонімних користувачів")
 public class AnonymousPostController {
     private final PostService postService;
     private final CommentService commentService;
@@ -61,6 +61,7 @@ public class AnonymousPostController {
     @GetMapping("{id}/img")
     @ApiOperation("Фото до публікації")
     public ResponseEntity getImage(@PathVariable Long id) throws IOException {
+
         BufferedImage bufferedImage;
         try {
             bufferedImage = ImageIO.read(FileService.getFile(postService.get(id).getImg(), Url.post));
