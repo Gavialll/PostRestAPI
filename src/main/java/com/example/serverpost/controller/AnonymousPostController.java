@@ -2,12 +2,14 @@ package com.example.serverpost.controller;
 
 import com.example.serverpost.component.FileService;
 import com.example.serverpost.dto.PostDto;
+import com.example.serverpost.exception.post.PostNotFoundException;
 import com.example.serverpost.model.Comment;
 import com.example.serverpost.service.CommentService;
 import com.example.serverpost.service.PostService;
 import com.example.serverpost.service.Url;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +27,7 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/api/anonymous/post")
 @Api(tags = "Контролер публікації для анонімних користувачів")
+@Slf4j
 public class AnonymousPostController {
     private final PostService postService;
     private final CommentService commentService;
@@ -37,13 +40,15 @@ public class AnonymousPostController {
     @GetMapping("/{postId}/comment")
     @ApiOperation("Всі коментарі до публікації")
     public List<Comment> getAllComment(@PathVariable Long postId) {
-        if(postService.get(postId) != null) {
-            List<Comment> commentList = commentService.getAllComment(postId);
-            commentList.sort(Comparator.comparing(Comment::getDate));
-            Collections.reverse(commentList);
-            return commentList;
+
+        if(postService.get(postId) == null) {
+            throw new PostNotFoundException("Post not found, id = " + postId);
         }
-        return null;
+
+        List<Comment> commentList = commentService.getAllComment(postId);
+        commentList.sort(Comparator.comparing(Comment::getDate));
+        Collections.reverse(commentList);
+        return commentList;
     }
 
     @GetMapping
@@ -63,6 +68,7 @@ public class AnonymousPostController {
     public ResponseEntity getImage(@PathVariable Long id) throws IOException {
 
         BufferedImage bufferedImage;
+
         try {
             bufferedImage = ImageIO.read(FileService.getFile(postService.get(id).getImg(), Url.post));
         }catch(IIOException exception){

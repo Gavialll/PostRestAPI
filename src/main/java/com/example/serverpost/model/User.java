@@ -1,5 +1,8 @@
 package com.example.serverpost.model;
 
+import com.example.serverpost.component.Validator;
+import com.example.serverpost.exception.user.UserValidationException;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -7,7 +10,7 @@ import java.util.Objects;
 @Entity
 public class User{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String firstName;
     private String lastName;
@@ -22,28 +25,19 @@ public class User{
     private List<Post> postList;
     private String img;
 
-    public User(){
-    }
 
-    public User(String login) {
-        this.login = login;
-    }
+    public User(){}
 
-    public User(String firstName, String lastName, String login, String password, Role role, String img) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.login = login;
-        this.password = password;
-        this.role = role;
-        this.img = img;
-    }
 
     public String getCity() {
         return city;
     }
 
     public void setCity(String city) {
-        this.city = city;
+        if(city == null || city.isEmpty())
+            this.city = "Невказано";
+        else
+            this.city = city;
     }
 
     public String getNumber() {
@@ -51,6 +45,8 @@ public class User{
     }
 
     public void setNumber(String number) {
+        if(number == null || !Validator.telNumber(number))
+            throw new UserValidationException("Number phone not valid");
         this.number = number;
     }
 
@@ -59,6 +55,10 @@ public class User{
     }
 
     public void setFirstName(String firstName) {
+        if(firstName == null || firstName.isEmpty())
+            throw new UserValidationException("First name empty");
+        else if(firstName.length() > 30)
+            throw new UserValidationException("field exceeds 30 characters, last name = " + firstName.length());
         this.firstName = firstName;
     }
 
@@ -67,7 +67,12 @@ public class User{
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        if(lastName == null)
+            this.lastName = "";
+        else if(lastName.length() > 30)
+            throw new UserValidationException("field exceeds 30 characters, last name = " + lastName.length());
+        else
+            this.lastName = lastName;
     }
 
     public String getImg() {
@@ -107,6 +112,8 @@ public class User{
     }
 
     public void setLogin(String login) {
+        if(login == null || !Validator.email(login))
+            throw new UserValidationException("Email not valid");
         this.login = login;
     }
 

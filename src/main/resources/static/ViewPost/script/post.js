@@ -1,4 +1,4 @@
-import {getPostDate, GET, apiAddress, POST} from "./module.js";
+import {apiAddress, GET, getPostDate, POST} from "./module.js";
 
 //Підставлення інформації про публікацію
 //-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-/
@@ -118,7 +118,7 @@ function printComment() {
         let message = document.getElementById("commentText").value;
 
         const headers = {
-            'Authorization': 'Bearer_' + localStorage.getItem('token')
+            'Authorization': localStorage.getItem('token')
         }
         fetch(addCommentToPost(idPost), {method: "POST", body: message, headers: headers})
             .then(() => {

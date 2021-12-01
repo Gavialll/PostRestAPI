@@ -1,6 +1,9 @@
 package com.example.serverpost.model;
 
+import com.example.serverpost.exception.post.PostPriceException;
+import com.example.serverpost.exception.post.PostValidationException;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -9,7 +12,7 @@ import java.util.Objects;
 @Entity
 public class Post{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Long userId;
     @Column(nullable = false)
@@ -24,8 +27,8 @@ public class Post{
     private List<Comment> commentList;
 
 
-    public Post() {
-    }
+    public Post() {}
+
 
     public String getImg() {
         return img;
@@ -48,7 +51,11 @@ public class Post{
     }
 
     public void setCategory(Long category) {
-        this.category = category;
+        if(category == null)
+            this.category = 0L;
+        else
+            this.category = category;
+
     }
 
     public Integer getPrice() {
@@ -56,6 +63,9 @@ public class Post{
     }
 
     public void setPrice(Integer price) {
+        if(price == null || price < 0) {
+            throw new PostPriceException("price == null or price < 0");
+        }
         this.price = price;
     }
 
@@ -67,18 +77,9 @@ public class Post{
         this.id = id;
     }
 
-    public List<Comment> getCommentList() {
-        return commentList;
-    }
-
     public void setCommentList(List<Comment> commentList) {
         this.commentList = commentList;
     }
-//
-//    public Post(String name, String description) {
-//        this.name = name;
-//        this.description = description;
-//    }
 
     public Long getUserId() {
         return userId;
@@ -93,6 +94,8 @@ public class Post{
     }
 
     public void setName(String name) {
+        if(name.length() > 100)
+            throw new PostValidationException("name > 100char");
         this.name = name;
     }
 
@@ -101,6 +104,8 @@ public class Post{
     }
 
     public void setDescription(String description) {
+        if(name.length() > 500)
+            throw new PostValidationException("description > 500char");
         this.description = description;
     }
 

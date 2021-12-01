@@ -21,8 +21,8 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    @ApiOperation("Реєстрація корстувача")
-    public UserDto registrationUser(@RequestBody RegistrationUserDto newUser) {
-            return UserDto.create(userService.add(newUser));
+    @ApiOperation("Реєстрація користувача")
+    public UserDto registrationUser(@RequestBody RegistrationUserDto user) {
+            return UserDto.create(userService.add(user));
     }
 }

@@ -17,32 +17,10 @@ public class Comment{
     private String message;
     private LocalDateTime date;
 
+
     public Comment() {
     }
 
-    public Comment(Long postId, Long senderId, String message) {
-        this.postId = postId;
-        this.senderId = senderId;
-        this.message = message;
-    }
-
-    public Comment(Long id, String message) {
-        this.id = id;
-        this.message = message;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
-        Comment comment = (Comment) o;
-        return Objects.equals(id, comment.id) && Objects.equals(postId, comment.postId) && Objects.equals(senderId, comment.senderId) && Objects.equals(message, comment.message);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, postId, senderId, message);
-    }
 
     public LocalDateTime getDate() {
         return date;
@@ -58,10 +36,6 @@ public class Comment{
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getPostId() {
-        return postId;
     }
 
     public void setPostId(Long postId) {
@@ -82,5 +56,18 @@ public class Comment{
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, postId, senderId, message);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
+        Comment comment = (Comment) o;
+        return Objects.equals(id, comment.id) && Objects.equals(postId, comment.postId) && Objects.equals(senderId, comment.senderId) && Objects.equals(message, comment.message);
     }
 }

@@ -12,12 +12,9 @@ public class Category {
     private List<Post> postList;
     private String name;
 
-    public Category() {
-    }
 
-    public Category(String name) {
-        this.name = name;
-    }
+    public Category() {}
+
 
     public Long getId() {
         return id;
@@ -29,10 +26,6 @@ public class Category {
 
     public List<Post> getPostList() {
         return postList;
-    }
-
-    public void setPostList(List<Post> postList) {
-        this.postList = postList;
     }
 
     public String getName() {

@@ -3,7 +3,6 @@ package com.example.serverpost.service.impl;
 import com.example.serverpost.component.AuthenticationUser;
 import com.example.serverpost.dto.AddPostDto;
 import com.example.serverpost.exception.post.PostNotFoundException;
-import com.example.serverpost.exception.post.PostPriceException;
 import com.example.serverpost.model.Post;
 import com.example.serverpost.repository.PostRepo;
 import org.springframework.stereotype.Service;
@@ -23,23 +22,28 @@ public class PostServiceImpl implements com.example.serverpost.service.PostServi
 
     @Override
     public Post get(Long id){
-        return postRepo.findById(id).orElseThrow(() -> new PostNotFoundException("Post not found, id = " + id));
+        return postRepo.findById(id).orElseThrow(() -> {
+            throw new PostNotFoundException("Post not found, id =" + id);
+        });
     }
 
     @Override
-    public Post add(AddPostDto post) {
-        // TODO: 12.11.2021 Зробити валідацію полів при додаванні публікації.
-        if(post.getPrice() == null || post.getPrice() < 0)
-            throw new PostPriceException("Price no validation");
-        if(post.getCategory() == null) {
-            post.setCategory(0L);
-        }
-        return postRepo.save(create(post));
+    public Post add(AddPostDto newPost) {
+        Post post = new Post();
+        post.setCategory(newPost.getCategory());
+        post.setName(newPost.getName());
+        post.setPrice(newPost.getPrice());
+        post.setDescription(newPost.getDescription());
+        post.setDate(LocalDateTime.now());
+        post.setUserId(authentication.Id());
+        return postRepo.save(post);
     }
 
     @Override
     public void delete(Long id) {
-        postRepo.findById(id).orElseThrow(() -> new PostNotFoundException("Post not found, id = " + id));
+        postRepo.findById(id).orElseThrow(() -> {
+            throw new PostNotFoundException("Post not found, id = " + id);
+        });
         postRepo.deleteById(id);
     }
 
@@ -54,14 +58,4 @@ public class PostServiceImpl implements com.example.serverpost.service.PostServi
         return postRepo.findAll();
     }
 
-    public Post create(AddPostDto addPost){
-        Post post = new Post();
-            post.setCategory(addPost.getCategory());
-            post.setName(addPost.getName());
-            post.setPrice(addPost.getPrice());
-            post.setDescription(addPost.getDescription());
-            post.setDate(LocalDateTime.now());
-            post.setUserId(authentication.Id());
-        return post;
-    }
 }

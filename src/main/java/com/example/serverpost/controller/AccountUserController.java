@@ -10,6 +10,7 @@ import com.example.serverpost.service.Url;
 import com.example.serverpost.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,7 +23,9 @@ import java.nio.file.Paths;
 @CrossOrigin
 @RequestMapping("/api/account")
 @Api(tags = "Контролер для управління акаунтом")
+@Slf4j
 public class AccountUserController {
+
     private final UserService userService;
     private final AuthenticationUser authentication;
 
@@ -46,20 +49,18 @@ public class AccountUserController {
     @PostMapping("/img")
     @ApiOperation("Додати фото користувача")
     public HttpStatus addImg(@RequestParam MultipartFile file){
+
         Path path = Paths.get(Url.user);
         User user = userService.get(authentication.Id());
 
-        // при зміні фото профіля видаляєм старе фото
         if(user.getImg() != null){
             File photo = new File(Url.user + user.getImg());
             if(!photo.delete()) {
-                // TODO: 15.11.2021 змінити RuntimeException на Exception,
-                //       і попробувати видалити ще раз старе фото.
+                log.warn("The previous image was not deleted");
                 throw new UserImageException("The previous image was not deleted");
             }
         }
 
-        //Зберігаєм назву фото до БД
         user.setImg(FileService.save(file, path));
         userService.update(authentication.Id(), user);
         return HttpStatus.OK;
@@ -68,8 +69,9 @@ public class AccountUserController {
     @PutMapping()
     @ApiOperation("Редагування інфомації користувача")
     public UserDto updateUser(@RequestBody UpdateUserDto updateUserDto){
+
         User user = userService.get(authentication.Id());
-        // TODO: 15.11.2021 Переробити валідацію полів 
+
         if(updateUserDto.getFirstName() != null) user.setFirstName(updateUserDto.getFirstName());
         if(updateUserDto.getLastName() != null) user.setLastName(updateUserDto.getLastName());
         if(updateUserDto.getCity() != null) user.setCity(updateUserDto.getCity());

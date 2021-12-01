@@ -1,9 +1,9 @@
 package com.example.serverpost.security;
 
 
-import com.example.serverpost.repository.UserRepo;
 import com.example.serverpost.dto.AuthenticationRequestDto;
 import com.example.serverpost.model.User;
+import com.example.serverpost.repository.UserRepo;
 import com.example.serverpost.security.jwt.JwtTokenProvider;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,13 +18,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
 @CrossOrigin
-@Api(description = "Контролер для автоизації")
+@Api(tags = "Контролер для автоизації")
 public class SecurityController {
 
     private final AuthenticationManager authenticationManager;

@@ -1,11 +1,11 @@
 package com.example.serverpost.component;
 
-import com.example.serverpost.exception.RegistrationException;
 import com.example.serverpost.exception.category.CategoryException;
-import com.example.serverpost.exception.post.PostAddException;
 import com.example.serverpost.exception.post.PostNotFoundException;
 import com.example.serverpost.exception.post.PostPriceException;
+import com.example.serverpost.exception.post.PostValidationException;
 import com.example.serverpost.exception.user.UserNotFoundException;
+import com.example.serverpost.exception.user.UserValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -29,18 +29,20 @@ public class Handler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(value = PostAddException.class)
-    protected ResponseEntity<Object> add(PostAddException exception){
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
-    }
-
     @ExceptionHandler(value = PostPriceException.class)
-    protected ResponseEntity<Object> price(PostPriceException exception){
+    protected ResponseEntity<Object> set(PostPriceException exception){
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(value = RegistrationException.class)
-    protected ResponseEntity<Object> price(RegistrationException exception){
+    @ExceptionHandler(value = UserValidationException.class)
+    protected ResponseEntity<Object> set(UserValidationException exception){
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(value = PostValidationException.class)
+    protected ResponseEntity<Object> set(PostValidationException exception){
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    // TODO: 30.11.2021 add @ExceptionHandeler to UserImageException, PostImageException
 }

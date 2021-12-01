@@ -1,5 +1,6 @@
 package com.example.serverpost.component;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,6 +14,7 @@ import java.security.SecureRandom;
 import java.util.Random;
 
 @Component
+@Slf4j
 public class FileService {
     public static String save(MultipartFile file, Path dir){
         String fileName = FileService.createRandomCode(20,

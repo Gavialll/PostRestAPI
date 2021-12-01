@@ -5,7 +5,6 @@ import com.example.serverpost.model.Post;
 
 import java.util.List;
 
-
 public interface PostService {
     Post get(Long id);
     Post add(AddPostDto addPostDto);

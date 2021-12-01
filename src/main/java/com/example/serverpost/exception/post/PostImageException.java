@@ -1,4 +1,4 @@
-package com.example.serverpost.exception;
+package com.example.serverpost.exception.post;
 
 public class PostImageException extends RuntimeException {
     public PostImageException(String message) {

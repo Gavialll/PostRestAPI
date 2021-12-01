@@ -35,14 +35,14 @@ public class AnonymousUserController {
     @GetMapping("/{id}/img")
     @ApiOperation("Фото користувача")
     public ResponseEntity getImg(@PathVariable Long id) throws IOException {
+
         BufferedImage bufferedImage = ImageIO
                 .read(FileService.getFile(userService.get(id).getImg(), Url.user));
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(bufferedImage, "png", baos);
 
-        return ResponseEntity
-                .ok()
+        return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_PNG)
                 .body(baos.toByteArray());
     }
