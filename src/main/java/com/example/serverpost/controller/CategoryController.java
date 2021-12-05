@@ -22,7 +22,7 @@ public class CategoryController {
 
     @GetMapping("/{id}")
     @ApiOperation("Дістаєм категорію, і всі її публікаціїї")
-    public CategoryDto get(@PathVariable Long id) throws Exception {
+    public CategoryDto get(@PathVariable Long id) {
 
         return CategoryDto.create(
                 categoryRepo.findById(id)
