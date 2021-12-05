@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+/src/main/resources/static/DBImage/Post
+/src/main/resources/static/DBImage/User
