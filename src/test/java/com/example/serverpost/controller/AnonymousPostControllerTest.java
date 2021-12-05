@@ -77,6 +77,10 @@ class AnonymousPostControllerTest {
         assertEquals(1, listByPrice.get(0).getPrice());
         assertEquals(4, listByPrice.get(5).getPrice());
 
+        List<PostDto> listByDefault = anonymousPostController.sort("");
+        assertEquals(1, listByDefault.get(0).getPrice());
+        assertEquals(4, listByDefault.get(5).getPrice());
+
         List<PostDto> listByDate = anonymousPostController.sort("date");
         assertEquals(post3.getDate(), listByDate.get(0).getDate());
         assertEquals(post4.getDate(), listByDate.get(5).getDate());
