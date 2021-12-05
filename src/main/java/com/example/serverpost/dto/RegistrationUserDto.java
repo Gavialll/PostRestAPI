@@ -16,4 +16,8 @@ public class RegistrationUserDto {
     private String number;
     private String password;
     private String passwordConfirmation;
+
+    public RegistrationUserDto() {
+
+    }
 }

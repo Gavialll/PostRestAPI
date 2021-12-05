@@ -94,6 +94,8 @@ public class Post{
     }
 
     public void setName(String name) {
+        if(name == null)
+            name = "";
         if(name.length() > 100)
             throw new PostValidationException("name > 100char");
         this.name = name;
@@ -104,7 +106,9 @@ public class Post{
     }
 
     public void setDescription(String description) {
-        if(name.length() > 500)
+        if(description == null)
+            description = "";
+        if(description.length() > 500)
             throw new PostValidationException("description > 500char");
         this.description = description;
     }

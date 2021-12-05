@@ -45,7 +45,6 @@ public class UserServiceImpl implements com.example.serverpost.service.UserServi
        user.setRole(roleRepo.getById(2L));
        user.setPostList(List.of());
        user.setPassword(passwordEncoder.encode(newUser.getPassword()));
-
        return userRepo.save(user);
     }
 
@@ -64,6 +63,7 @@ public class UserServiceImpl implements com.example.serverpost.service.UserServi
 
     @Override
     public User update(Long id, User user){
+        userRepo.findById(id).orElseThrow(() -> new UserNotFoundException("User not found, id = " + id));
         return userRepo.save(user);
     }
 

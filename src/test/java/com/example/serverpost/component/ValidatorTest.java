@@ -21,6 +21,7 @@ class ValidatorTest {
     @Test
     void email() {
         assertTrue(Validator.email("andr@gmail.com"));
+        assertTrue(Validator.email("andrvhg@gmail.com"));
         assertFalse(Validator.email("andr@amli.ksad"));
         assertFalse(Validator.email(""));
         assertFalse(Validator.email("asasd"));

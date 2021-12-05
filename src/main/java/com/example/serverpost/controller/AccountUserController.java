@@ -10,7 +10,6 @@ import com.example.serverpost.service.Url;
 import com.example.serverpost.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,7 +22,6 @@ import java.nio.file.Paths;
 @CrossOrigin
 @RequestMapping("/api/account")
 @Api(tags = "Контролер для управління акаунтом")
-@Slf4j
 public class AccountUserController {
 
     private final UserService userService;
@@ -56,7 +54,6 @@ public class AccountUserController {
         if(user.getImg() != null){
             File photo = new File(Url.user + user.getImg());
             if(!photo.delete()) {
-                log.warn("The previous image was not deleted");
                 throw new UserImageException("The previous image was not deleted");
             }
         }

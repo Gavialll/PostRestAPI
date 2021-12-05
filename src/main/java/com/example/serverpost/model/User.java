@@ -58,7 +58,7 @@ public class User{
         if(firstName == null || firstName.isEmpty())
             throw new UserValidationException("First name empty");
         else if(firstName.length() > 30)
-            throw new UserValidationException("field exceeds 30 characters, last name = " + firstName.length());
+            throw new UserValidationException("Field exceeds 30 characters, first name = " + firstName.length());
         this.firstName = firstName;
     }
 

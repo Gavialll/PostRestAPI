@@ -1,6 +1,5 @@
 package com.example.serverpost.component;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,13 +13,14 @@ import java.security.SecureRandom;
 import java.util.Random;
 
 @Component
-@Slf4j
 public class FileService {
     public static String save(MultipartFile file, Path dir){
-        String fileName = FileService.createRandomCode(20,
-                file.getOriginalFilename()) + file.getOriginalFilename();
-        Path filepath = Paths.get(dir.toString(), fileName);
-        try (OutputStream os = Files.newOutputStream(filepath)) {
+        String fileName = FileService.createRandomCode(
+        20, file.getOriginalFilename()) + file.getOriginalFilename();
+
+        Path filePath = Paths.get(dir.toString(), fileName);
+
+        try (OutputStream os = Files.newOutputStream(filePath)) {
             os.write(file.getBytes());
         } catch(IOException e) {
             e.printStackTrace();

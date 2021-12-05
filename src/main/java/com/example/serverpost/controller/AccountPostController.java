@@ -8,10 +8,10 @@ import com.example.serverpost.exception.post.PostImageException;
 import com.example.serverpost.exception.post.PostNotFoundException;
 import com.example.serverpost.model.Comment;
 import com.example.serverpost.model.Post;
+import com.example.serverpost.service.CommentService;
+import com.example.serverpost.service.PostService;
 import com.example.serverpost.service.Url;
 import com.example.serverpost.service.UserService;
-import com.example.serverpost.service.impl.CommentServiceImpl;
-import com.example.serverpost.service.impl.PostServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -32,11 +32,11 @@ import java.util.List;
 @Slf4j
 public class AccountPostController {
     private final UserService userService;
-    private final PostServiceImpl postService;
+    private final PostService postService;
     private final AuthenticationUser authentication;
-    private final CommentServiceImpl commentService;
+    private final CommentService commentService;
 
-    public AccountPostController(UserService userService, PostServiceImpl postService, AuthenticationUser authentication, CommentServiceImpl commentService) {
+    public AccountPostController(UserService userService, PostService postService, AuthenticationUser authentication, CommentService commentService) {
         this.userService = userService;
         this.postService = postService;
         this.authentication = authentication;
@@ -52,20 +52,17 @@ public class AccountPostController {
     @GetMapping("/{id}")
     @ApiOperation("Дістаєм публікацію користувача по ID")
     public PostDto getOne(@PathVariable Long id){
-
         Post post = postService.get(id);
 
-        if(post.getUserId().equals(authentication.Id())) return PostDto.create(post);
-        else{
-            log.warn("Post not found, id = " + id);
+        if(post.getUserId().equals(authentication.Id()))
+            return PostDto.create(post);
+        else
             throw new PostNotFoundException("Post not found, id = " + id);
-        }
     }
 
     @PostMapping
     @ApiOperation("Додаєм нову публікацію")
     public PostDto addPost(@RequestBody AddPostDto addPostDto){
-
         return PostDto.create(postService.add(addPostDto));
     }
     
@@ -73,17 +70,16 @@ public class AccountPostController {
     @ApiOperation("Додаєм головне фото публікації")
     public HttpStatus addImage(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
 
-        Path path = Paths.get(Url.post);
         Post post = postService.get(id);
 
         if(post.getImg() != null){
             File photo = new File(Url.post + post.getImg());
             if(!photo.delete()) {
-                log.warn("The previous image was not deleted");
                 throw new PostImageException("The previous image was not deleted");
             }
         }
 
+        Path path = Paths.get(Url.post);
         post.setImg(FileService.save(file, path));
         postService.update(post.getId(), post);
 
@@ -124,12 +120,15 @@ public class AccountPostController {
         Post post = postService.get(id);
         File photo = new File(Url.post + post.getImg());
 
+        if(post.getImg() == null){
+            postService.delete(id);
+            return HttpStatus.OK;
+        }
+
         if(!photo.delete()) {
-            log.warn("Image not deleted");
             throw new PostImageException("Image not deleted");
         }
         postService.delete(id);
-
         return HttpStatus.OK;
     }
 }

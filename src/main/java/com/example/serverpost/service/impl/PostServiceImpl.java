@@ -22,9 +22,7 @@ public class PostServiceImpl implements com.example.serverpost.service.PostServi
 
     @Override
     public Post get(Long id){
-        return postRepo.findById(id).orElseThrow(() -> {
-            throw new PostNotFoundException("Post not found, id =" + id);
-        });
+        return postRepo.findById(id).orElseThrow(() -> new PostNotFoundException("Post not found, id =" + id));
     }
 
     @Override
@@ -41,9 +39,7 @@ public class PostServiceImpl implements com.example.serverpost.service.PostServi
 
     @Override
     public void delete(Long id) {
-        postRepo.findById(id).orElseThrow(() -> {
-            throw new PostNotFoundException("Post not found, id = " + id);
-        });
+        postRepo.findById(id).orElseThrow(() -> new PostNotFoundException("Post not found, id = " + id));
         postRepo.deleteById(id);
     }
 
@@ -57,5 +53,4 @@ public class PostServiceImpl implements com.example.serverpost.service.PostServi
     public List<Post> getAllPost(){
         return postRepo.findAll();
     }
-
 }

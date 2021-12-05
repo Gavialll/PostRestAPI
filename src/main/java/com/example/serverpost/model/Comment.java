@@ -42,10 +42,6 @@ public class Comment{
         this.postId = postId;
     }
 
-    public Long getSenderId() {
-        return senderId;
-    }
-
     public void setSenderId(Long senderId) {
         this.senderId = senderId;
     }
